@@ -1,4 +1,5 @@
-﻿using System.Windows;
+﻿using Actividad_2_MVVM_David_Oviedo.ViewModel;
+using System.Windows;
 
 namespace Actividad_2_MVVM_David_Oviedo.View
 {
@@ -10,6 +11,8 @@ namespace Actividad_2_MVVM_David_Oviedo.View
         public Actividades()
         {
             InitializeComponent();
+            // Asignamos el ViewModel como DataContext para que el XAML pueda enlazar sus propiedades y comandos.
+            DataContext = new ActividadesViewModel();
         }
     }
 }

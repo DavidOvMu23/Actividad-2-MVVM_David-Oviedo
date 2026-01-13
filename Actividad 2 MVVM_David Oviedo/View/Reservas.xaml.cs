@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Actividad_2_MVVM_David_Oviedo.ViewModel;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -22,11 +23,8 @@ namespace Actividad_2_MVVM_David_Oviedo.View
         public Reservas()
         {
             InitializeComponent();
-        }
-
-        private void Button_Click(object sender, RoutedEventArgs e)
-        {
-
+            // Asignamos el ViewModel como DataContext para que el XAML pueda enlazar sus propiedades y comandos.
+            DataContext = new ReservasViewModel();
         }
     }
 }

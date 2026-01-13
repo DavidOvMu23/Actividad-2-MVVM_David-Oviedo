@@ -67,6 +67,10 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="ViewModel\ActividadesViewModel.cs" />
+    <Compile Include="Command\RelayCommand.cs" />
+    <Compile Include="ViewModel\ReservasViewModel.cs" />
+    <Compile Include="ViewModel\SociosViewModel.cs" />
     <Compile Include="View\Reservas.xaml.cs">
       <DependentUpon>Reservas.xaml</DependentUpon>
     </Compile>
@@ -153,9 +157,7 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="ViewModel\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <Content Include="Model\CentroDeportivo.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>

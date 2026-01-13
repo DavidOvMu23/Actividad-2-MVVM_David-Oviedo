@@ -129,14 +129,14 @@
                         </Grid.RowDefinitions>
 
                         <TextBlock x:Name="label_nombre" Text="Nombre" Grid.Row="0" Grid.Column="0" VerticalAlignment="Center" Margin="0,0,8,8" />
-                        <TextBox x:Name="textbox_nombre" Grid.Row="0" Grid.Column="1" Text="{Binding ActividadSeleccionada.Nombre, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}" Style="{StaticResource ValidationStyle}" />
+                        <TextBox x:Name="textbox_nombre" Grid.Row="0" Grid.Column="1" Text="{Binding ActividadFormulario.Nombre, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}" Style="{StaticResource ValidationStyle}" />
 
                         <TextBlock x:Name="label_afoto" Text="Aforo máximo" Grid.Row="1" Grid.Column="0" VerticalAlignment="Center" Margin="0,0,8,8" />
-                        <TextBox x:Name="textbox_aforo" Grid.Row="1" Grid.Column="1" Text="{Binding ActividadSeleccionada.AforoMaximo, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}" Style="{StaticResource ValidationStyle}" />
+                        <TextBox x:Name="textbox_aforo" Grid.Row="1" Grid.Column="1" Text="{Binding ActividadFormulario.AforoMaximo, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}" Style="{StaticResource ValidationStyle}" />
 
                         <StackPanel Grid.Row="2" Grid.ColumnSpan="2" Orientation="Horizontal" HorizontalAlignment="Right" Margin="0,12,0,0">
                             <Button x:Name="button_limpiar" Content="Limpiar" Command="{Binding NuevaActividadCommand}" Width="100" Style="{StaticResource PrimaryButton}" />
-                            <Button x:Name="button_guardar" Content="Guardar" Command="{Binding GuardarActividadCommand}" Width="100" CommandParameter="{Binding ActividadSeleccionada}" Style="{StaticResource AccentButton}" />
+                            <Button x:Name="button_guardar" Content="Guardar" Command="{Binding GuardarActividadCommand}" Width="100" Style="{StaticResource AccentButton}" />
                         </StackPanel>
                     </Grid>
                 </GroupBox>
@@ -151,7 +151,7 @@
                 </DataGrid>
 
                 <StackPanel Grid.Row="2" Orientation="Horizontal" HorizontalAlignment="Right" Margin="0,12,0,0">
-                    <Button x:Name="button_editar" Content="Editar" Command="{Binding GuardarActividadCommand}" Width="100" CommandParameter="{Binding ActividadSeleccionada}" Style="{StaticResource PrimaryButton}" />
+                    <Button x:Name="button_editar" Content="Editar" Command="{Binding EditarActividadCommand}" Width="100" Style="{StaticResource PrimaryButton}" />
                     <Button x:Name="button_eliminar" Content="Eliminar" Command="{Binding EliminarActividadCommand}" Width="100" CommandParameter="{Binding ActividadSeleccionada}" Style="{StaticResource PrimaryButton}" Background="{StaticResource PrimaryDarkBrush}" />
                 </StackPanel>
             </Grid>

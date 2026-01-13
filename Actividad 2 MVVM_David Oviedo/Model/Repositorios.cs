@@ -15,7 +15,7 @@ namespace Actividad_2_MVVM_David_Oviedo.Model
         {
             return _context.Actividad.ToList();
         }
-
+        
         public void GuardarActividad(Actividad actividad)
         {
             _context.Actividad.Add(actividad);
