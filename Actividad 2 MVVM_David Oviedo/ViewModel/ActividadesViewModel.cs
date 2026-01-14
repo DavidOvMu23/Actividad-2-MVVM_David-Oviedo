@@ -1,5 +1,5 @@
-﻿using Actividad_2_MVVM_David_Oviedo.Model;
-using Actividad_2_MVVM_David_Oviedo.Command;
+﻿using Actividad_2_MVVM_David_Oviedo.Command;
+using Actividad_2_MVVM_David_Oviedo.Model;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Windows;
@@ -7,173 +7,176 @@ using System.Windows.Input;
 
 namespace Actividad_2_MVVM_David_Oviedo.ViewModel
 {
-    // ViewModel que conecta la vista con los datos y la lógica
+    // ViewModel que conecta la ventana de actividades con los datos y lógica.
     public class ActividadesViewModel : INotifyPropertyChanged
     {
-        // Puerta de entrada a la base de datos usando el repositorio.
-        private readonly Repositorio _repositorio;
+        private readonly Repositorio _repositorio; // acceso a la BD
+        private ObservableCollection<Actividad> _listaActividades; // datos para el DataGrid
+        private Actividad _actividadEnFormulario; // objeto enlazado al formulario
+        private Actividad _actividadSeleccionadaGrid; // fila seleccionada en el DataGrid
 
-        // Colección para mostrar la información en el DataGrid. Si cambia, la vista se actualiza sola.
-        private ObservableCollection<Actividad> _actividades;
-
-        // Para seleccionar una actividad en el DataGrid
-        private Actividad _actividadSeleccionada;
-
-        // Actividad que se está editando en el formulario (puede ser nueva o una existente).
-        private Actividad _actividadFormulario;
-
-        // Lista de actividades para el DataGrid.
-        public ObservableCollection<Actividad> Actividades
+        // Lista de actividades para el DataGrid
+        public ObservableCollection<Actividad> ListaActividades
         {
-            get => _actividades;
+            get { return _listaActividades; }
+            set { _listaActividades = value; OnPropertyChanged(nameof(ListaActividades)); }
+        }
+
+        // Objeto enlazado al formulario de edición/creación
+        public Actividad ActividadEnFormulario
+        {
+            get { return _actividadEnFormulario; }
+            set { _actividadEnFormulario = value; OnPropertyChanged(nameof(ActividadEnFormulario)); }
+        }
+
+        // Fila seleccionada en el DataGrid
+        public Actividad ActividadSeleccionadaGrid
+        {
+            get { return _actividadSeleccionadaGrid; }
             set
             {
-                _actividades = value;
-                OnPropertyChanged(nameof(Actividades));
+                _actividadSeleccionadaGrid = value;
+                OnPropertyChanged(nameof(ActividadSeleccionadaGrid));
+                CommandManager.InvalidateRequerySuggested(); // refresca CanExecute de los comandos
             }
         }
 
-        // Referencia a la fila seleccionada en el DataGrid para editar o borrar
-        public Actividad ActividadSeleccionada
-        {
-            get => _actividadSeleccionada;
-            set
-            {
-                _actividadSeleccionada = value;
-                OnPropertyChanged(nameof(ActividadSeleccionada));
-            }
-        }
+        // Comandos usados en la vista
+        public ICommand GuardarCommand { get; private set; }
+        public ICommand NuevoCommand { get; private set; }
+        public ICommand EliminarCommand { get; private set; }
+        public ICommand EditarCommand { get; private set; }
 
-        // Objeto que alimenta el formulario (los TextBox).
-        public Actividad ActividadFormulario
-        {
-            get => _actividadFormulario;
-            set
-            {
-                _actividadFormulario = value;
-                OnPropertyChanged(nameof(ActividadFormulario));
-            }
-        }
+        public event PropertyChangedEventHandler PropertyChanged; // notificación de cambios a la vista (me lo ha hecho el chat)
 
-        // Comandos para enlazar a los botones del XAML. RelayCommand ejecuta el método que pasamos.
-        public ICommand GuardarActividadCommand { get; }
-        public ICommand NuevaActividadCommand { get; }
-        public ICommand EliminarActividadCommand { get; }
-        public ICommand EditarActividadCommand { get; }
-
-        // Evento que notifica a la vista que una propiedad cambió.
-        public event PropertyChangedEventHandler PropertyChanged;
-
-        // Constructor que inicializa el ViewModel.
+        // Constructor para inicializar datos y comandos
         public ActividadesViewModel()
         {
             _repositorio = new Repositorio();
-            // Cargar datos iniciales para el DataGrid.
-            Actividades = new ObservableCollection<Actividad>(_repositorio.SeleccionarActividades());
-            // Preparar el formulario
-            ActividadFormulario = CrearNuevaActividad();
+            ListaActividades = new ObservableCollection<Actividad>(_repositorio.SeleccionarActividades());
+            ActividadEnFormulario = CrearNuevaActividad();
 
-            // Crear comandos que la vista usará. Cada botón dispara el método indicado.
-            GuardarActividadCommand = new RelayCommand(_ => GuardarActividad());
-            NuevaActividadCommand = new RelayCommand(_ => NuevaActividad());
-            EliminarActividadCommand = new RelayCommand(EliminarActividad, _ => PuedeEliminar());
-            EditarActividadCommand = new RelayCommand(_ => EditarActividad(), _ => PuedeEditar());
+            // Relacionamos botones con acciones y condiciones de habilitado
+            GuardarCommand = new RelayCommand(GuardarAccion);
+            NuevoCommand = new RelayCommand(NuevoAccion);
+            EliminarCommand = new RelayCommand(EliminarAccion, PuedeEditarEliminar);
+            EditarCommand = new RelayCommand(EditarAccion, PuedeEditarEliminar);
         }
 
-        // Devuelve un objeto nuevo listo para usar en el formulario.
+        // Crea una nueva actividad con valores por defecto
         private Actividad CrearNuevaActividad()
         {
-            return new Actividad { AforoMaximo = 1 };
+            return new Actividad { AforoMaximo = 1 }; // valor por defecto
         }
 
-        // Limpia el formulario y deselecciona el DataGrid.
-        private void NuevaActividad()
+        // Acción para el comando Nuevo
+        private void Nuevo()
         {
-            ActividadSeleccionada = null;
-            ActividadFormulario = CrearNuevaActividad();
+            ActividadEnFormulario = CrearNuevaActividad(); // limpia el formulario
         }
 
-        // Copia la actividad seleccionada al formulario para editarla
-        private void EditarActividad()
+        // Acción para el comando Editar
+        private void Editar()
         {
-            if (ActividadSeleccionada == null)
-                return;
-
-            ActividadFormulario = ActividadSeleccionada;
+            if (ActividadSeleccionadaGrid == null) return;
+            // pasa la selección del grid al formulario
+            ActividadEnFormulario = ActividadSeleccionadaGrid;
         }
 
-        // Valida y guarda: si la actividad es nueva la inserta; si existe, actualiza.
-        private void GuardarActividad()
+        // Acción para el comando Guardar
+        private void Guardar()
         {
-            // Obtener la actividad del formulario.
-            var actividad = ActividadFormulario;
-            if (actividad == null)
-                return;
+            if (ActividadEnFormulario == null) return;
 
-            // Validación básica: nombre obligatorio.
-            if (string.IsNullOrWhiteSpace(actividad.Nombre))
+            // Validar que tiene nombre y aforo válido
+            if (string.IsNullOrWhiteSpace(ActividadEnFormulario.Nombre) || ActividadEnFormulario.AforoMaximo <= 0)
             {
-                MessageBox.Show("Debe introducir el nombre de la actividad.", "Datos incompletos", MessageBoxButton.OK, MessageBoxImage.None);
+                MessageBox.Show("Rellena nombre y un aforo mayor que 0", "Aviso");
                 return;
             }
 
-            // Validación de aforo mínimo 1.
-            if (actividad.AforoMaximo <= 0)
-            {
-                actividad.AforoMaximo = 1;
-                OnPropertyChanged(nameof(ActividadFormulario));
-                MessageBox.Show("El aforo máximo debe ser al menos 1.", "Datos incompletos", MessageBoxButton.OK, MessageBoxImage.None);
-                return;
-            }
+            var esNuevo = ActividadEnFormulario.Id == 0;
 
-            // Si Id==0 es nueva: se añade al contexto y a la lista observable.
-            if (actividad.Id == 0)
+            // si el socio es nuevo, lo crea  si no, lo actualiza
+            if (esNuevo)
             {
-                _repositorio.GuardarActividad(actividad);
-                Actividades.Add(actividad);
-                MessageBox.Show("Actividad creada correctamente.", "Éxito", MessageBoxButton.OK, MessageBoxImage.None);
-                ActividadFormulario = CrearNuevaActividad();
+                _repositorio.GuardarActividad(ActividadEnFormulario);
+                MessageBox.Show("Actividad creada", "Aviso");
             }
             else
             {
-                // Si ya existe: se guardan cambios y se limpia el formulario.
-                _repositorio.ActualizarActividad();
-                MessageBox.Show("Actividad editada correctamente.", "Éxito", MessageBoxButton.OK, MessageBoxImage.None);
-                ActividadFormulario = CrearNuevaActividad();
-                ActividadSeleccionada = null;
+                _repositorio.ActualizarActividad(ActividadEnFormulario);
+                MessageBox.Show("Actividad actualizada", "Aviso");
             }
+
+            // Refrescamos grid y limpiamos selección/formulario
+            ListaActividades = new ObservableCollection<Actividad>(_repositorio.SeleccionarActividades());
+            ActividadSeleccionadaGrid = null;
+            ActividadEnFormulario = CrearNuevaActividad();
         }
 
-        // Controla si el botón Eliminar debe estar habilitado.
-        private bool PuedeEliminar()
+        private bool PuedeEditarEliminar(object parameter)
         {
-            return ActividadSeleccionada != null && ActividadSeleccionada.Id != 0;
+            // Solo habilita Editar/Eliminar si hay una fila seleccionada
+            return ActividadSeleccionadaGrid != null;
         }
 
-        // Controla si el botón Editar debe estar habilitado.
-        private bool PuedeEditar()
+        private void Eliminar()
         {
-            return ActividadSeleccionada != null;
-        }
+            // Preferimos la del formulario si tiene Id; si no, la seleccionada
+            var actividadObjetivo = ActividadEnFormulario != null && ActividadEnFormulario.Id != 0
+                ? ActividadEnFormulario
+                : ActividadSeleccionadaGrid;
 
-        // Elimina la actividad seleccionada (si tiene Id) y resetea el formulario.
-        private void EliminarActividad(object parameter)
-        {
-            var actividad = parameter as Actividad ?? ActividadSeleccionada;
-            if (actividad == null || actividad.Id == 0)
+            // Validar que hay una actividad seleccionada
+            if (actividadObjetivo == null || actividadObjetivo.Id == 0)
+            {
+                MessageBox.Show("Selecciona una actividad para eliminar", "Aviso");
                 return;
+            }
 
-            _repositorio.EliminarActividad(actividad);
-            Actividades.Remove(actividad);
-            MessageBox.Show("Actividad eliminada correctamente.", "Éxito", MessageBoxButton.OK, MessageBoxImage.None);
-            ActividadSeleccionada = null;
-            ActividadFormulario = CrearNuevaActividad();
+            // Intentar eliminar la actividad
+            var eliminado = _repositorio.EliminarActividad(actividadObjetivo);
+            if (!eliminado)
+            {
+                MessageBox.Show("No se puede eliminar porque tiene reservas.", "Aviso");
+                return;
+            }
+
+            ListaActividades = new ObservableCollection<Actividad>(_repositorio.SeleccionarActividades());
+            ActividadSeleccionadaGrid = null;
+            ActividadEnFormulario = CrearNuevaActividad();
+            MessageBox.Show("Actividad eliminada", "Aviso");
         }
 
-        // Notifica a la vista que una propiedad cambió para refrescar los bindings.
-        private void OnPropertyChanged(string propertyName)
+        // Métodos adaptadores para RelayCommand
+        private void GuardarAccion(object parameter)
         {
-            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+            Guardar();
+        }
+
+        private void NuevoAccion(object parameter)
+        {
+            Nuevo();
+        }
+
+        private void EliminarAccion(object parameter)
+        {
+            Eliminar();
+        }
+
+        private void EditarAccion(object parameter)
+        {
+            Editar();
+        }
+
+        private void OnPropertyChanged(string name)
+        {
+            var handler = PropertyChanged;
+            if (handler != null)
+            {
+                handler(this, new PropertyChangedEventArgs(name));
+            }
         }
     }
 }

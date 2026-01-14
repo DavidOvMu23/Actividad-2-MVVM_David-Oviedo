@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Actividad_2_MVVM_David_Oviedo.View"
         mc:Ignorable="d"
-        Title="Gestión de reservas" Height="600" Width="900">
+        Title="Gestión de reservas" Height="851" Width="900">
     <Window.Resources>
         <SolidColorBrush x:Key="PrimaryBrush" Color="#2D6A8D" />
         <SolidColorBrush x:Key="PrimaryDarkBrush" Color="#1F4A63" />
@@ -148,32 +148,32 @@
                         </Grid.RowDefinitions>
 
                         <TextBlock x:Name="label_socio" Text="Socio" Grid.Row="0" Grid.Column="0" VerticalAlignment="Center" Margin="0,0,8,8" />
-                        <ComboBox x:Name="combobox_socio" Grid.Row="0" Grid.Column="1" ItemsSource="{Binding Socios}"
+                        <ComboBox x:Name="combobox_socio" Grid.Row="0" Grid.Column="1" ItemsSource="{Binding ListaSocios}"
                                   DisplayMemberPath="Nombre" SelectedValuePath="Id"
-                                  SelectedValue="{Binding ReservaSeleccionada.SocioId, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                                  SelectedValue="{Binding ReservaEnFormulario.SocioId, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                                   Style="{StaticResource ValidationStyle}" />
 
                         <TextBlock x:Name="label_actividad" Text="Actividad" Grid.Row="1" Grid.Column="0" VerticalAlignment="Center" Margin="0,0,8,8" />
-                        <ComboBox x:Name="combobox_actividad" Grid.Row="1" Grid.Column="1" ItemsSource="{Binding Actividades}"
+                        <ComboBox x:Name="combobox_actividad" Grid.Row="1" Grid.Column="1" ItemsSource="{Binding ListaActividades}"
                                   DisplayMemberPath="Nombre" SelectedValuePath="Id"
-                                  SelectedValue="{Binding ReservaSeleccionada.ActividadId, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                                  SelectedValue="{Binding ReservaEnFormulario.ActividadId, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                                   Style="{StaticResource ValidationStyle}" />
 
                         <TextBlock x:Name="label_fecha" Text="Fecha" Grid.Row="2" Grid.Column="0" VerticalAlignment="Center" Margin="0,0,8,8" />
                         <DatePicker x:Name="datepicker_fecha" Grid.Row="2" Grid.Column="1"
-                                    SelectedDate="{Binding ReservaSeleccionada.Fecha, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                                    SelectedDate="{Binding ReservaEnFormulario.Fecha, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                                     Style="{StaticResource ValidationStyle}" />
 
                         <StackPanel Grid.Row="3" Grid.ColumnSpan="2" Orientation="Horizontal" HorizontalAlignment="Right" Margin="0,12,0,0">
-                            <Button x:Name="button_limpiar" Content="Limpiar" Command="{Binding NuevaReservaCommand}" Width="100" Style="{StaticResource PrimaryButton}" />
-                            <Button x:Name="button_guardar" Content="Guardar" Command="{Binding GuardarReservaCommand}" Width="100"
-                                    CommandParameter="{Binding ReservaSeleccionada}" Style="{StaticResource AccentButton}" />
+                            <Button x:Name="button_limpiar" Content="Limpiar" Command="{Binding NuevoCommand}" Width="100" Style="{StaticResource PrimaryButton}" />
+                            <Button x:Name="button_guardar" Content="Guardar" Command="{Binding GuardarCommand}" Width="100"
+                                    Style="{StaticResource AccentButton}" />
                         </StackPanel>
                     </Grid>
                 </GroupBox>
 
-                <DataGrid x:Name="datagrid_reservas" Grid.Row="1" ItemsSource="{Binding Reservas}" AutoGenerateColumns="False" IsReadOnly="True"
-                          SelectedItem="{Binding ReservaSeleccionada, Mode=TwoWay}" Margin="0,12,0,0" RowHeight="32">
+                <DataGrid x:Name="datagrid_reservas" Grid.Row="1" ItemsSource="{Binding ListaReservas}" AutoGenerateColumns="False" IsReadOnly="True"
+                          SelectedItem="{Binding ReservaSeleccionadaGrid, Mode=TwoWay}" Margin="0,12,0,0" RowHeight="32">
                     <DataGrid.Columns>
                         <DataGridTextColumn Header="Id" Binding="{Binding Id}" Width="60" />
                         <DataGridTextColumn Header="Socio" Binding="{Binding Socio.Nombre}" Width="*" />
@@ -184,10 +184,10 @@
                 </DataGrid>
 
                 <StackPanel Grid.Row="2" Orientation="Horizontal" HorizontalAlignment="Right" Margin="0,12,0,0">
-                    <Button x:Name="button_editar" Content="Editar" Command="{Binding GuardarReservaCommand}" Width="100"
-                            CommandParameter="{Binding ReservaSeleccionada}" Style="{StaticResource PrimaryButton}" />
-                    <Button x:Name="button_eliminar" Content="Eliminar" Command="{Binding EliminarReservaCommand}" Width="100"
-                            CommandParameter="{Binding ReservaSeleccionada}" Style="{StaticResource PrimaryButton}" Background="{StaticResource PrimaryDarkBrush}" />
+                    <Button x:Name="button_editar" Content="Editar" Command="{Binding EditarCommand}" Width="100"
+                            Style="{StaticResource PrimaryButton}" />
+                    <Button x:Name="button_eliminar" Content="Eliminar" Command="{Binding EliminarCommand}" Width="100"
+                            Style="{StaticResource PrimaryButton}" Background="{StaticResource PrimaryDarkBrush}" />
                 </StackPanel>
             </Grid>
         </Border>

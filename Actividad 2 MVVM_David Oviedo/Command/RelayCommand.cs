@@ -8,25 +8,23 @@ namespace Actividad_2_MVVM_David_Oviedo.Command
     /// - _canExecute: función opcional que determina si el comando puede ejecutarse.
     public class RelayCommand : ICommand
     {
-        // Acción que se ejecutará cuando el comando se invoque.
-        private readonly Action<object> _execute;
-        // Función opcional que determina si el comando está habilitado.
-        private readonly Predicate<object> _canExecute;
+        private readonly Action<object> _execute; // acción que se ejecutará
+        private readonly Predicate<object> _canExecute; // condición opcional para habilitar/deshabilitar
 
-        // Constructor sencillo: siempre se puede ejecutar.
+        // Constructor cuando siempre se puede ejecutar
         public RelayCommand(Action<object> execute) : this(execute, null) { }
 
-        // Constructor completo: recibe acción y condición de habilitado.
+        // Constructor principal: recibes la acción a ejecutar y opcionalmente la condición de ejecución.
         public RelayCommand(Action<object> execute, Predicate<object> canExecute)
         {
             _execute = execute ?? throw new ArgumentNullException(nameof(execute));
-            _canExecute = canExecute;
+            _canExecute = canExecute; // puede ser null
         }
 
         // Devuelve true/false para habilitar o deshabilitar el control enlazado al comando.
         public bool CanExecute(object parameter) => _canExecute == null || _canExecute(parameter);
 
-        // Lógica real que se ejecuta cuando se dispara el comando (por ejemplo, al pulsar un botón).
+        // Lógica real que se ejecuta cuando se dispara el comando (por ejemplo, al pulsar un botón)
         public void Execute(object parameter) => _execute(parameter);
 
         // Eventos que WPF escucha para reevaluar el estado del comando (habilitado/deshabilitado).
