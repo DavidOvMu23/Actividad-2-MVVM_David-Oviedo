@@ -12,86 +12,6 @@
         <SolidColorBrush x:Key="AccentBrush" Color="#F2B138" />
         <SolidColorBrush x:Key="LightBrush" Color="#F7FAFD" />
         <SolidColorBrush x:Key="BorderBrush" Color="#D6DFE6" />
-
-        <Style x:Key="ValidationStyle" TargetType="Control">
-            <Setter Property="Validation.ErrorTemplate">
-                <Setter.Value>
-                    <ControlTemplate>
-                        <DockPanel LastChildFill="True">
-                            <TextBlock Text="•" Foreground="Red" Margin="0,0,4,0" FontWeight="Bold" />
-                            <AdornedElementPlaceholder />
-                        </DockPanel>
-                    </ControlTemplate>
-                </Setter.Value>
-            </Setter>
-            <Style.Triggers>
-                <Trigger Property="Validation.HasError" Value="True">
-                    <Setter Property="ToolTip"
-                            Value="{Binding RelativeSource={RelativeSource Self}, Path=(Validation.Errors)[0].ErrorContent}" />
-                    <Setter Property="BorderBrush" Value="Red" />
-                </Trigger>
-            </Style.Triggers>
-        </Style>
-
-        <Style x:Key="PrimaryButton" TargetType="Button">
-            <Setter Property="Background" Value="{StaticResource PrimaryBrush}" />
-            <Setter Property="Foreground" Value="White" />
-            <Setter Property="Padding" Value="10,6" />
-            <Setter Property="Margin" Value="0,0,8,0" />
-            <Setter Property="FontWeight" Value="SemiBold" />
-            <Setter Property="BorderThickness" Value="0" />
-            <Setter Property="Cursor" Value="Hand" />
-            <Setter Property="Template">
-                <Setter.Value>
-                    <ControlTemplate TargetType="Button">
-                        <Border Background="{TemplateBinding Background}" CornerRadius="6" Padding="{TemplateBinding Padding}">
-                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center" />
-                        </Border>
-                    </ControlTemplate>
-                </Setter.Value>
-            </Setter>
-            <Style.Triggers>
-                <Trigger Property="IsMouseOver" Value="True">
-                    <Setter Property="Background" Value="{StaticResource PrimaryDarkBrush}" />
-                </Trigger>
-                <Trigger Property="IsEnabled" Value="False">
-                    <Setter Property="Opacity" Value="0.5" />
-                    <Setter Property="Cursor" Value="Arrow" />
-                </Trigger>
-            </Style.Triggers>
-        </Style>
-
-        <Style x:Key="AccentButton" TargetType="Button" BasedOn="{StaticResource PrimaryButton}">
-            <Setter Property="Background" Value="{StaticResource AccentBrush}" />
-            <Style.Triggers>
-                <Trigger Property="IsMouseOver" Value="True">
-                    <Setter Property="Background" Value="#D89C2F" />
-                </Trigger>
-            </Style.Triggers>
-        </Style>
-
-        <Style TargetType="GroupBox">
-            <Setter Property="BorderBrush" Value="{StaticResource BorderBrush}" />
-            <Setter Property="Background" Value="White" />
-            <Setter Property="Padding" Value="12" />
-            <Setter Property="Margin" Value="0,0,0,12" />
-        </Style>
-
-        <Style TargetType="DataGrid">
-            <Setter Property="GridLinesVisibility" Value="None" />
-            <Setter Property="RowBackground" Value="{StaticResource LightBrush}" />
-            <Setter Property="AlternatingRowBackground" Value="#E6EEF5" />
-            <Setter Property="HeadersVisibility" Value="Column" />
-            <Setter Property="BorderBrush" Value="{StaticResource BorderBrush}" />
-            <Setter Property="BorderThickness" Value="1" />
-        </Style>
-
-        <Style TargetType="DataGridColumnHeader">
-            <Setter Property="Background" Value="{StaticResource PrimaryBrush}" />
-            <Setter Property="Foreground" Value="White" />
-            <Setter Property="FontWeight" Value="SemiBold" />
-            <Setter Property="Padding" Value="8" />
-        </Style>
     </Window.Resources>
 
     <Grid>
@@ -116,7 +36,7 @@
                     <RowDefinition Height="Auto" />
                 </Grid.RowDefinitions>
 
-                <GroupBox x:Name="griupbox_actividades" Header="Datos de la actividad">
+                <GroupBox x:Name="griupbox_actividades" Header="Datos de la actividad" BorderBrush="{StaticResource BorderBrush}" Background="White" Padding="12" Margin="0,0,0,12">
                     <Grid>
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="150" />
@@ -129,14 +49,14 @@
                         </Grid.RowDefinitions>
 
                         <TextBlock x:Name="label_nombre" Text="Nombre" Grid.Row="0" Grid.Column="0" VerticalAlignment="Center" Margin="0,0,8,8" />
-                        <TextBox x:Name="textbox_nombre" Grid.Row="0" Grid.Column="1" Text="{Binding ActividadEnFormulario.Nombre, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Style="{StaticResource ValidationStyle}" />
+                        <TextBox x:Name="textbox_nombre" Grid.Row="0" Grid.Column="1" Text="{Binding ActividadEnFormulario.Nombre, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
 
                         <TextBlock x:Name="label_afoto" Text="Aforo máximo" Grid.Row="1" Grid.Column="0" VerticalAlignment="Center" Margin="0,0,8,8" />
-                        <TextBox x:Name="textbox_aforo" Grid.Row="1" Grid.Column="1" Text="{Binding ActividadEnFormulario.AforoMaximo, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Style="{StaticResource ValidationStyle}" />
+                        <TextBox x:Name="textbox_aforo" Grid.Row="1" Grid.Column="1" Text="{Binding ActividadEnFormulario.AforoMaximo, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
 
                         <StackPanel Grid.Row="2" Grid.ColumnSpan="2" Orientation="Horizontal" HorizontalAlignment="Right" Margin="0,12,0,0">
-                            <Button x:Name="button_limpiar" Content="Limpiar" Command="{Binding NuevoCommand}" Width="100" Style="{StaticResource PrimaryButton}" />
-                            <Button x:Name="button_guardar" Content="Guardar" Command="{Binding GuardarCommand}" Width="100" Style="{StaticResource AccentButton}" />
+                            <Button x:Name="button_limpiar" Content="Limpiar" Command="{Binding NuevoCommand}" Width="100" Background="{StaticResource PrimaryBrush}" Foreground="White" />
+                            <Button x:Name="button_guardar" Content="Guardar" Command="{Binding GuardarCommand}" Width="100" Background="{StaticResource AccentBrush}" Foreground="White" />
                         </StackPanel>
                     </Grid>
                 </GroupBox>
@@ -151,8 +71,8 @@
                 </DataGrid>
 
                 <StackPanel Grid.Row="2" Orientation="Horizontal" HorizontalAlignment="Right" Margin="0,12,0,0">
-                    <Button x:Name="button_editar" Content="Editar" Command="{Binding EditarCommand}" Width="100" Style="{StaticResource PrimaryButton}" />
-                    <Button x:Name="button_eliminar" Content="Eliminar" Command="{Binding EliminarCommand}" Width="100" Style="{StaticResource PrimaryButton}" Background="{StaticResource PrimaryDarkBrush}" />
+                    <Button x:Name="button_editar" Content="Editar" Command="{Binding EditarCommand}" Width="100" Background="{StaticResource PrimaryBrush}" Foreground="White" />
+                    <Button x:Name="button_eliminar" Content="Eliminar" Command="{Binding EliminarCommand}" Width="100" Background="{StaticResource PrimaryDarkBrush}" Foreground="White" />
                 </StackPanel>
             </Grid>
         </Border>
