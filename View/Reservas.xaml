@@ -1,0 +1,113 @@
+﻿<Window x:Class="View.Reservas"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:View"
+        mc:Ignorable="d"
+        Title="Gestión de reservas" Height="851" Width="900">
+    <Window.Resources>
+        <SolidColorBrush x:Key="PrimaryBrush" Color="#2D6A8D" />
+        <SolidColorBrush x:Key="PrimaryDarkBrush" Color="#1F4A63" />
+        <SolidColorBrush x:Key="AccentBrush" Color="#F2B138" />
+        <SolidColorBrush x:Key="LightBrush" Color="#F7FAFD" />
+        <SolidColorBrush x:Key="BorderBrush" Color="#D6DFE6" />
+    </Window.Resources>
+
+    <Grid>
+        <Grid.Background>
+            <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
+                <GradientStop Color="#EEF3F8" Offset="0" />
+                <GradientStop Color="#DCE7F1" Offset="1" />
+            </LinearGradientBrush>
+        </Grid.Background>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+
+        <Border x:Name="border_cabezera" Margin="16,12,16,8" Padding="14" CornerRadius="12" Background="#F3F7FB" BorderBrush="{StaticResource BorderBrush}" BorderThickness="1">
+            <Border.Effect>
+                <DropShadowEffect Color="#33000000" BlurRadius="10" ShadowDepth="1" Opacity="0.3" />
+            </Border.Effect>
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="Auto" />
+                </Grid.ColumnDefinitions>
+                <StackPanel Orientation="Vertical">
+                    <TextBlock x:Name="label_titulo" Text="Reservas" FontSize="24" FontWeight="Bold" Foreground="{StaticResource PrimaryDarkBrush}" />
+                    <TextBlock x:Name="label_subtitulo" Foreground="#5B6E7C" FontSize="12" ><Run Text="Gestiona reservas y accede "/><Run Language="es-es" Text="a "/><Run Text="socios y actividades"/></TextBlock>
+                </StackPanel>
+                <StackPanel Grid.Column="1" Orientation="Horizontal" HorizontalAlignment="Right">
+                    <Button x:Name="button_socios" Content="Socios" Width="120" Margin="0,0,8,0" Height="26"
+                            Background="{StaticResource PrimaryBrush}" Foreground="White" Click="button_socios_Click" />
+                    <Button x:Name="button_Actividades" Content="Actividades"  Width="140" Height="29"
+                            Background="{DynamicResource PrimaryDarkBrush}" Foreground="White" Click="button_Actividades_Click" />
+                </StackPanel>
+            </Grid>
+        </Border>
+
+        <Border x:Name="border_reservas" Grid.Row="1" Background="White" CornerRadius="10" Padding="16" Margin="16" BorderBrush="{StaticResource BorderBrush}" BorderThickness="1">
+            <Grid Margin="0,4,0,0">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="*" />
+                    <RowDefinition Height="Auto" />
+                </Grid.RowDefinitions>
+
+                <GroupBox Header="Reserva" BorderBrush="{StaticResource BorderBrush}" Background="White" Padding="12" Margin="0,0,0,12">
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="150" />
+                            <ColumnDefinition Width="*" />
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                        </Grid.RowDefinitions>
+
+                        <TextBlock x:Name="label_socio" Text="Socio" Grid.Row="0" Grid.Column="0" VerticalAlignment="Center" Margin="0,0,8,8" />
+                        <ComboBox x:Name="combobox_socio" Grid.Row="0" Grid.Column="1" ItemsSource="{Binding ListaSocios}"
+                                  DisplayMemberPath="Nombre" SelectedValuePath="Id"
+                                  SelectedValue="{Binding ReservaEnFormulario.SocioId, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+
+                        <TextBlock x:Name="label_actividad" Text="Actividad" Grid.Row="1" Grid.Column="0" VerticalAlignment="Center" Margin="0,0,8,8" />
+                        <ComboBox x:Name="combobox_actividad" Grid.Row="1" Grid.Column="1" ItemsSource="{Binding ListaActividades}"
+                                  DisplayMemberPath="Nombre" SelectedValuePath="Id"
+                                  SelectedValue="{Binding ReservaEnFormulario.ActividadId, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+
+                        <TextBlock x:Name="label_fecha" Text="Fecha" Grid.Row="2" Grid.Column="0" VerticalAlignment="Center" Margin="0,0,8,8" />
+                        <DatePicker x:Name="datepicker_fecha" Grid.Row="2" Grid.Column="1"
+                                    SelectedDate="{Binding ReservaEnFormulario.Fecha, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+
+                        <StackPanel Grid.Row="3" Grid.ColumnSpan="2" Orientation="Horizontal" HorizontalAlignment="Right" Margin="0,12,0,0">
+                            <Button x:Name="button_limpiar" Content="Limpiar" Command="{Binding NuevoCommand}" Width="100" Background="{StaticResource PrimaryBrush}" Foreground="White" />
+                            <Button x:Name="button_guardar" Content="Guardar" Command="{Binding GuardarCommand}" Width="100" Background="{StaticResource AccentBrush}" Foreground="White" />
+                        </StackPanel>
+                    </Grid>
+                </GroupBox>
+
+                <DataGrid x:Name="datagrid_reservas" Grid.Row="1" ItemsSource="{Binding ListaReservas}" AutoGenerateColumns="False" IsReadOnly="True"
+                          SelectedItem="{Binding ReservaSeleccionadaGrid, Mode=TwoWay}" Margin="0,12,0,0" RowHeight="32">
+                    <DataGrid.Columns>
+                        <DataGridTextColumn Header="Id" Binding="{Binding Id}" Width="60" />
+                        <DataGridTextColumn Header="Socio" Binding="{Binding Socio.Nombre}" Width="*" />
+                        <DataGridTextColumn Header="Email" Binding="{Binding Socio.Email}" Width="*" />
+                        <DataGridTextColumn Header="Actividad" Binding="{Binding Actividad.Nombre}" Width="*" />
+                        <DataGridTextColumn Header="Fecha" Binding="{Binding Fecha, StringFormat=d}" Width="150" />
+                    </DataGrid.Columns>
+                </DataGrid>
+
+                <StackPanel Grid.Row="2" Orientation="Horizontal" HorizontalAlignment="Right" Margin="0,12,0,0">
+                    <Button x:Name="button_editar" Content="Editar" Command="{Binding EditarCommand}" Width="100"
+                            Background="{StaticResource PrimaryBrush}" Foreground="White" />
+                    <Button x:Name="button_eliminar" Content="Eliminar" Command="{Binding EliminarCommand}" Width="100"
+                            Background="{StaticResource PrimaryDarkBrush}" Foreground="White" />
+                </StackPanel>
+            </Grid>
+        </Border>
+    </Grid>
+</Window>
