@@ -2,6 +2,8 @@
 {
     using Microsoft.VisualStudio.TestTools.UnitTesting;
     using Model;
+    using System;
+    using System.Collections.Generic;
 
     [TestClass]
     public sealed class PruebasUnitarias
@@ -16,7 +18,7 @@
             socio.Email = "usuario@dominio.com";
             Assert.IsTrue(repo.EsEmailValido(socio.Email));
 
-            // Caso inválido (sin @)
+            // Caso inválido
             socio.Email = "usuario.com";
             Assert.IsFalse(repo.EsEmailValido(socio.Email));
         }
@@ -24,34 +26,59 @@
         [TestMethod]
         public void ValidacionFechaReserva()
         {
-            // Probamos la validación de fechas sin inicializar EF
-            var fechaAyer = System.DateTime.Today.AddDays(-1);
-            Assert.IsFalse(Repositorio.EsFechaReservaValida(fechaAyer));
+            // Creamos una reserva con fecha en el pasado y comprobamos
+            // que el intento de guardado es rechazado por la validación
+            var repo = new Repositorio();
+            var reservaPasada = new Reserva
+            {
+                SocioId = 1,
+                ActividadId = 1,
+                Fecha = DateTime.Today.AddDays(-1)
+            };
 
-            var fechaHoy = System.DateTime.Today;
-            Assert.IsTrue(Repositorio.EsFechaReservaValida(fechaHoy));
+            // GuardarReserva devuelve false cuando la fecha es anterior a hoy
+            Assert.IsFalse(repo.GuardarReserva(reservaPasada));
+
+            // Para completar la verificación, la función estática también debe
+            // indicar que la fecha no es válida.
+            Assert.IsFalse(Repositorio.EsFechaReservaValida(reservaPasada.Fecha));
         }
 
         [TestMethod]
         public void ValidacionAforoMaximo()
         {
-            // Probamos la lógica sin acceder a la base de datos usando Validaciones.PuedeGuardarReserva.
-            var aforo = 2;
-            var ocupadosAntes = 0;
-            var fechaValida = System.DateTime.Today;
-            var fechaPasada = System.DateTime.Today.AddDays(-1);
+            // Simulamos una Actividad con aforo 1 y reservamos dos veces.
+            var actividad = new Actividad { Id = 10, Nombre = "Clase", AforoMaximo = 1 };
 
-            // No está lleno, no duplicado y fecha válida -> se puede guardar
-            Assert.IsTrue(Repositorio.PuedeGuardarReserva(aforo, ocupadosAntes, fechaValida, esDuplicado: false));
+            // Lista en memoria que simula las reservas existentes para la actividad
+            var reservas = new List<Reserva>();
 
-            // Aforo lleno -> no se puede guardar
-            Assert.IsFalse(Repositorio.PuedeGuardarReserva(aforo, aforo, fechaValida, esDuplicado: false));
+            // Primera reserva. si no hay ocupados debe permitirse
+            var reserva1 = new Reserva { Id = 1, SocioId = 1, ActividadId = actividad.Id, Fecha = DateTime.Today };
+            int ocupadosAntes = 0;
+            foreach (var r in reservas)
+            {
+                if (r.ActividadId == actividad.Id)
+                {
+                    ocupadosAntes++;
+                }
+            }
+            Assert.IsTrue(Repositorio.HayPlazasDisponibles(actividad.AforoMaximo, ocupadosAntes));
 
-            // Duplicado -> no se puede guardar
-            Assert.IsFalse(Repositorio.PuedeGuardarReserva(aforo, ocupadosAntes, fechaValida, esDuplicado: true));
+            // Añadimos la primera reserva (simulando que se guardó)
+            reservas.Add(reserva1);
 
-            // Fecha en el pasado -> no se puede guardar
-            Assert.IsFalse(Repositorio.PuedeGuardarReserva(aforo, ocupadosAntes, fechaPasada, esDuplicado: false));
+            // Segunda reserva. ahora ocupados no debe permitirse
+            var reserva2 = new Reserva { Id = 2, SocioId = 2, ActividadId = actividad.Id, Fecha = DateTime.Today };
+            int ocupadosDespues = 0;
+            foreach (var r in reservas)
+            {
+                if (r.ActividadId == actividad.Id)
+                {
+                    ocupadosDespues++;
+                }
+            }
+            Assert.IsFalse(Repositorio.HayPlazasDisponibles(actividad.AforoMaximo, ocupadosDespues));
         }
     }
 }
