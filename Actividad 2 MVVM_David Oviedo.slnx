@@ -1,5 +1,6 @@
 <Solution>
   <Project Path="Model/Model.csproj" Id="f85c4a16-1b27-4ac1-ac74-2cc1be1dce71" />
   <Project Path="ModelView/ModelView.csproj" Id="fc272186-f4a2-4f3d-a6bf-acfe82a02e18" />
+  <Project Path="Testing/Testing.csproj" Id="6e0ae808-813b-49ec-b704-9a2a3823a87f" />
   <Project Path="View/View.csproj" Id="f8643ad7-e542-45db-93f2-641a7968448c" />
 </Solution>

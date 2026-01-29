@@ -94,6 +94,13 @@ namespace ModelView
                 return;
             }
 
+            // Validación del formato de email
+            if (!_repositorio.EsEmailValido(SocioEnFormulario.Email))
+            {
+                MessageBox.Show("Formato de email no válido", "Aviso");
+                return;
+            }
+
             var esNuevo = SocioEnFormulario.Id == 0;
 
             if (esNuevo)
