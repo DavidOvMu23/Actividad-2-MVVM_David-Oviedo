@@ -9,7 +9,17 @@ namespace Model
     {
         // es el objeto que abre la conexión con la base de datos.
         private Model1 _context;
-        private Model1 Context => _context ?? (_context = new Model1());
+        private Model1 Context
+        {
+            get
+            {
+                if (_context == null)
+                {
+                    _context = new Model1();
+                }
+                return _context;
+            }
+        }
 
         // Comprueba si el formato de un email es válido usando una expresión regular.
         public bool EsEmailValido(string email)
@@ -50,9 +60,14 @@ namespace Model
             var actividad = Context.Actividad.Find(actividadId);
             if (actividad == null) return false; // si no existe la actividad, devolvemos false
 
-            var ocupados = Context.Reserva
-                .Count(r => r.ActividadId == actividadId
-                            && (!reservaIdExcluir.HasValue || r.Id != reservaIdExcluir.Value));
+            var ocupados = 0;
+            foreach (var r in Context.Reserva)
+            {
+                if (r.ActividadId == actividadId && (!reservaIdExcluir.HasValue || r.Id != reservaIdExcluir.Value))
+                {
+                    ocupados++;
+                }
+            }
 
             // Hay plazas libres cuando ocupados es menor que el aforo máximo.
             return ocupados < actividad.AforoMaximo;
@@ -64,11 +79,17 @@ namespace Model
         {
             var start = fecha.Date;
             var end = start.AddDays(1);
-            return _context.Reserva.Any(r =>
-                (!reservaIdExcluir.HasValue || r.Id != reservaIdExcluir.Value)
-                && r.SocioId == socioId
-                && r.ActividadId == actividadId
-                && r.Fecha >= start && r.Fecha < end);
+            foreach (var r in _context.Reserva)
+            {
+                if ((!reservaIdExcluir.HasValue || r.Id != reservaIdExcluir.Value)
+                    && r.SocioId == socioId
+                    && r.ActividadId == actividadId
+                    && r.Fecha >= start && r.Fecha < end)
+                {
+                    return true;
+                }
+            }
+            return false;
         }
 
         // ACTIVIDADES
