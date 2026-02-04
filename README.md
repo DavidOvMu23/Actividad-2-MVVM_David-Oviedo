@@ -19,19 +19,20 @@ Aplicación de escritorio para la gestión de un centro deportivo. Implementa el
 2. Compila la solución.
 3. Ejecuta la aplicación desde Visual Studio.
 
-## Manual de usuario
+## Archivos
 [Descargar manual de usuario](docs/pdf/Manual_CentroDeportivo.pdf)
+
 [Descargar documentacion técnica](docs/pdf/Documentacion_Tecnica.pdf)
 
 ## Capturas
 ### Pantalla principal
-<img src="docs/capturas/pantalla-principal.PNG" width="370" alt="Pantalla principal">
+<img src="docs/capturas/pantalla-principal.PNG" width="400" alt="Pantalla principal">
 
 ### Gestión de actividades
-<img src="docs/capturas/actividades.PNG" width="370" alt="Gestión de actividades">
+<img src="docs/capturas/actividades.PNG" width="400" alt="Gestión de actividades">
 
 ### Gestión de socios
-<img src="docs/capturas/socios.PNG" width="370" alt="Gestión de socios">
+<img src="docs/capturas/socios.PNG" width="400" alt="Gestión de socios">
 
 ## Autores
 - David Oviedo
