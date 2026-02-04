@@ -20,9 +20,9 @@ Aplicación de escritorio para la gestión de un centro deportivo. Implementa el p
 3. Ejecuta la aplicación desde Visual Studio.
 
 ## Capturas
-![Pantalla principal](docs/capturas/pantalla-principal.png)
-![Gestión de actividades](docs/capturas/actividades.png)
-![Gestion de socios](docs/capturas/socios.png)
+![Pantalla principal](docs/capturas/pantalla-principal.PNG)
+![Gestión de actividades](docs/capturas/actividades.PNG)
+![Gestion de socios](docs/capturas/socios.PNG)
 
 ## Autores
 - David Oviedo
