@@ -21,6 +21,7 @@ Aplicación de escritorio para la gestión de un centro deportivo. Implementa el
 
 ## Manual de usuario
 [Descargar manual de usuario](docs/pdf/Manual_CentroDeportivo.pdf)
+[Descargar documentacion técnica](docs/pdf/Documentacion_Tecnica.pdf)
 
 ## Capturas
 ### Pantalla principal
