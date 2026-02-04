@@ -7,7 +7,9 @@ using System.Windows.Input;
 
 namespace ModelView
 {
-    // ViewModel que conecta la ventana de actividades con los datos y lógica.
+    /// <summary>
+    /// ViewModel que conecta la ventana de actividades con los datos y la lógica.
+    /// </summary>
     public class ActividadesViewModel : INotifyPropertyChanged
     {
         private readonly Repositorio _repositorio; // acceso a la BD
@@ -15,21 +17,27 @@ namespace ModelView
         private Actividad _actividadEnFormulario; // objeto enlazado al formulario
         private Actividad _actividadSeleccionadaGrid; // fila seleccionada en el DataGrid
 
-        // Lista de actividades para el DataGrid
+        /// <summary>
+        /// Lista de actividades para el DataGrid.
+        /// </summary>
         public ObservableCollection<Actividad> ListaActividades
         {
             get { return _listaActividades; }
             set { _listaActividades = value; OnPropertyChanged(nameof(ListaActividades)); }
         }
 
-        // Objeto enlazado al formulario de edición/creación
+        /// <summary>
+        /// Actividad enlazada al formulario.
+        /// </summary>
         public Actividad ActividadEnFormulario
         {
             get { return _actividadEnFormulario; }
             set { _actividadEnFormulario = value; OnPropertyChanged(nameof(ActividadEnFormulario)); }
         }
 
-        // Fila seleccionada en el DataGrid
+        /// <summary>
+        /// Actividad seleccionada en el DataGrid.
+        /// </summary>
         public Actividad ActividadSeleccionadaGrid
         {
             get { return _actividadSeleccionadaGrid; }
@@ -43,13 +51,27 @@ namespace ModelView
 
         // Comandos usados en la vista
         public ICommand GuardarCommand { get; private set; }
+        /// <summary>
+        /// Comando para crear una actividad nueva.
+        /// </summary>
         public ICommand NuevoCommand { get; private set; }
+        /// <summary>
+        /// Comando para eliminar.
+        /// </summary>
         public ICommand EliminarCommand { get; private set; }
+        /// <summary>
+        /// Comando para editar.
+        /// </summary>
         public ICommand EditarCommand { get; private set; }
 
-        public event PropertyChangedEventHandler PropertyChanged; // notificación de cambios a la vista (me lo ha hecho el chat)
+        /// <summary>
+        /// Evento para avisar cambios de propiedades.
+        /// </summary>
+        public event PropertyChangedEventHandler PropertyChanged;
 
-        // Constructor para inicializar datos y comandos
+        /// <summary>
+        /// Constructor del ViewModel de actividades.
+        /// </summary>
         public ActividadesViewModel()
         {
             _repositorio = new Repositorio();

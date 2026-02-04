@@ -8,7 +8,9 @@ using System.Windows.Input;
 
 namespace ModelView
 {
-    // ViewModel que conecta la vista de reservas con la lógica y datos.
+    /// <summary>
+    /// ViewModel que conecta la vista de reservas con la lógica y los datos.
+    /// </summary>
     public class ReservasViewModel : INotifyPropertyChanged
     {
         private readonly Repositorio _repositorio; // acceso a la BD
@@ -18,32 +20,45 @@ namespace ModelView
         private Reserva _reservaEnFormulario; // modelo que enlaza con los campos del formulario
         private Reserva _reservaSeleccionadaGrid; // fila seleccionada en el DataGrid
 
+        /// <summary>
+        /// Lista de reservas para el DataGrid.
+        /// </summary>
         public ObservableCollection<Reserva> ListaReservas
         {
             get { return _listaReservas; }
             set { _listaReservas = value; OnPropertyChanged(nameof(ListaReservas)); }
         }
 
+        /// <summary>
+        /// Lista de socios para el selector.
+        /// </summary>
         public ObservableCollection<Socio> ListaSocios
         {
             get { return _listaSocios; }
             set { _listaSocios = value; OnPropertyChanged(nameof(ListaSocios)); }
         }
 
+        /// <summary>
+        /// Lista de actividades para el selector.
+        /// </summary>
         public ObservableCollection<Actividad> ListaActividades
         {
             get { return _listaActividades; }
             set { _listaActividades = value; OnPropertyChanged(nameof(ListaActividades)); }
         }
 
-        // Enlace con los TextBox/ComboBox/DatePicker
+        /// <summary>
+        /// Reserva enlazada al formulario.
+        /// </summary>
         public Reserva ReservaEnFormulario
         {
             get { return _reservaEnFormulario; }
             set { _reservaEnFormulario = value; OnPropertyChanged(nameof(ReservaEnFormulario)); }
         }
 
-        // Fila seleccionada en el grid; al cambiar refrescamos comandos (habilita/deshabilita botones)
+        /// <summary>
+        /// Reserva seleccionada en el DataGrid.
+        /// </summary>
         public Reserva ReservaSeleccionadaGrid
         {
             get { return _reservaSeleccionadaGrid; }
@@ -55,16 +70,42 @@ namespace ModelView
             }
         }
 
-        // Comandos que la vista llama (botones) usando RelayCommand
+        /// <summary>
+        /// Comando para guardar.
+        /// </summary>
         public ICommand GuardarCommand { get; private set; }
+        /// <summary>
+        /// Comando para crear una reserva nueva
+        /// Comando para eliminar.
+        /// </summary>
+
+        /// </summary>
         public ICommand NuevoCommand { get; private set; }
+        /// <summary>
+        /// Comando para eliminar.
+        /// </summary>
         public ICommand EliminarCommand { get; private set; }
+        /// <summary>
+        /// Comando para editar.
+        /// </summary>
         public ICommand EditarCommand { get; private set; }
+        /// <summary>
+        /// Comando para abrir la vista de socios.
+        /// </summary>
         public ICommand AbrirSociosCommand { get; private set; }
+        /// <summary>
+        /// Comando para abrir la vista de actividades.
+        /// </summary>
         public ICommand AbrirActividadesCommand { get; private set; }
 
+        /// <summary>
+        /// Evento para avisar cambios de propiedades.
+        /// </summary>
         public event PropertyChangedEventHandler PropertyChanged;
 
+        /// <summary>
+        /// Constructor del ViewModel de reservas.
+        /// </summary>
         public ReservasViewModel()
         {
             _repositorio = new Repositorio();

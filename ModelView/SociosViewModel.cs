@@ -8,7 +8,9 @@ using System.Windows.Input;
 
 namespace ModelView
 {
-    // ViewModel que conecta la ventana de socios con los datos y la lógica.
+    /// <summary>
+    /// ViewModel que conecta la ventana de socios con los datos y la lógica.
+    /// </summary>
     public class SociosViewModel : INotifyPropertyChanged
     {
         private readonly Repositorio _repositorio; // acceso a la BD (CRUD)
@@ -16,18 +18,27 @@ namespace ModelView
         private Socio _socioEnFormulario; // objeto enlazado a los TextBox/CheckBox
         private Socio _socioSeleccionadoGrid; // fila seleccionada en el DataGrid
 
+        /// <summary>
+        /// Lista de socios para el DataGrid.
+        /// </summary>
         public ObservableCollection<Socio> ListaSocios
         {
             get { return _listaSocios; }
             set { _listaSocios = value; OnPropertyChanged(nameof(ListaSocios)); }
         }
 
+        /// <summary>
+        /// Socio enlazado al formulario.
+        /// </summary>
         public Socio SocioEnFormulario
         {
             get { return _socioEnFormulario; }
             set { _socioEnFormulario = value; OnPropertyChanged(nameof(SocioEnFormulario)); }
         }
 
+        /// <summary>
+        /// Socio seleccionado en el DataGrid.
+        /// </summary>
         public Socio SocioSeleccionadoGrid
         {
             get { return _socioSeleccionadoGrid; }
@@ -39,21 +50,34 @@ namespace ModelView
             }
         }
 
-        // Comandos que se usan en la vista (botones)
+        /// <summary>
+        /// Comando para guardar.
+        /// </summary>
         public ICommand GuardarCommand { get; private set; }
+        /// <summary>
+        /// Comando para crear un socio nuevo.
+        /// </summary>
         public ICommand NuevoCommand { get; private set; }
+        /// <summary>
+        /// Comando para eliminar.
+        /// </summary>
         public ICommand EliminarCommand { get; private set; }
+        /// <summary>
+        /// Comando para editar.
+        /// </summary>
         public ICommand EditarCommand { get; private set; }
 
         public event PropertyChangedEventHandler PropertyChanged; // me lo ha hecho el chat
 
+        /// <summary>
+        /// Constructor del ViewModel de socios.
+        /// </summary>
         public SociosViewModel()
         {
             _repositorio = new Repositorio();
             ListaSocios = new ObservableCollection<Socio>(_repositorio.SeleccionarSocios());
             SocioEnFormulario = CrearNuevoSocio(); // inicia el formulario limpio
 
-            // Relacionamos cada botón con su acción y condición de habilitado
             GuardarCommand = new RelayCommand(GuardarAccion);
             NuevoCommand = new RelayCommand(NuevoAccion);
             EliminarCommand = new RelayCommand(EliminarAccion, PuedeEditarEliminar);

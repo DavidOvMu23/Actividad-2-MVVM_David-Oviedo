@@ -5,9 +5,11 @@ using System.Text.RegularExpressions;
 
 namespace Model
 {
+    /// <summary>
+    /// Repositorio con acceso a datos y validaciones de actividades, socios y reservas.
+    /// </summary>
     public class Repositorio
     {
-        // es el objeto que abre la conexión con la base de datos.
         private Model1 _context;
         private Model1 Context
         {
@@ -21,29 +23,46 @@ namespace Model
             }
         }
 
-        // Comprueba si el formato de un email es válido usando una expresión regular.
+        /// <summary>
+        /// Comprueba si el email tiene un formato válido usando una expresión regular.
+        /// </summary>
+        /// <param name="email">Email a validar.</param>
+        /// <returns><c>true</c> si el formato es válido; en caso contrario, <c>false</c>.</returns>
         public bool EsEmailValido(string email)
         {
             if (string.IsNullOrWhiteSpace(email)) return false;
             return Regex.IsMatch(email, @"^[^@\s]+@[^@\s]+\.[^@\s]+$");
         }
 
-        // Comprueba si una fecha de reserva es válida (no en el pasado).
-        // Método estático para poder probar esta validación sin crear el contexto de EF.
+        /// <summary>
+        /// Comprueba si una fecha de reserva es válida (no en el pasado).
+        /// </summary>
+        /// <param name="fecha">Fecha a validar.</param>
+        /// <returns><c>true</c> si la fecha es válida; en caso contrario, <c>false</c>.</returns>
         public static bool EsFechaReservaValida(System.DateTime fecha)
         {
             return fecha.Date >= System.DateTime.Today;
         }
 
-        // Comprueba si hay plazas disponibles dado el aforo máximo y ocupados actuales.
-        // Método estático para poder probarlo sin inicializar EF.
+        /// <summary>
+        /// Comprueba si quedan plazas según el aforo y los ocupados.
+        /// </summary>
+        /// <param name="aforoMaximo">Aforo máximo.</param>
+        /// <param name="ocupados">Número de plazas ocupadas.</param>
+        /// <returns><c>true</c> si hay plazas disponibles; en caso contrario, <c>false</c>.</returns>
         public static bool HayPlazasDisponibles(int aforoMaximo, int ocupados)
         {
             return ocupados < aforoMaximo;
         }
 
-        // Determina si se puede guardar una reserva basándose en aforo, duplicado y fecha.
-        // Versión estática que no accede a la base de datos: recibe los valores necesarios como parámetros.
+        /// <summary>
+        /// Dice si se puede guardar una reserva según aforo, duplicados y fecha.
+        /// </summary>
+        /// <param name="aforoMaximo">Aforo máximo.</param>
+        /// <param name="ocupados">Número de plazas ocupadas.</param>
+        /// <param name="fecha">Fecha de la reserva.</param>
+        /// <param name="esDuplicado">Indica si existe una reserva duplicada.</param>
+        /// <returns><c>true</c> si se puede guardar; en caso contrario, <c>false</c>.</returns>
         public static bool PuedeGuardarReserva(int aforoMaximo, int ocupados, System.DateTime fecha, bool esDuplicado)
         {
             if (!EsFechaReservaValida(fecha)) return false;
@@ -52,13 +71,16 @@ namespace Model
             return true;
         }
 
-        // Comprueba si aún quedan plazas en la actividad (aforo disponible).
-        // Recorre todas las reservas para contar cuántas son de esa actividad
-        // y opcionalmente excluye una reserva (cuando editamos) para no contarse a sí misma.
+        /// <summary>
+        /// Comprueba si aún quedan plazas en la actividad.
+        /// </summary>
+        /// <param name="actividadId">Identificador de la actividad.</param>
+        /// <param name="reservaIdExcluir">Reserva a excluir al contar ocupación.</param>
+        /// <returns><c>true</c> si hay plazas disponibles; en caso contrario, <c>false</c>.</returns>
         public bool HayPlazasActividad(int actividadId, int? reservaIdExcluir = null)
         {
             var actividad = Context.Actividad.Find(actividadId);
-            if (actividad == null) return false; // si no existe la actividad, devolvemos false
+            if (actividad == null) return false;
 
             var ocupados = 0;
             foreach (var r in Context.Reserva)
@@ -73,8 +95,14 @@ namespace Model
             return ocupados < actividad.AforoMaximo;
         }
 
-        // Comprueba si ya existe una reserva para el mismo socio, actividad y fecha
-        // Recorremos todas las reservas comparando socio, actividad y solo la parte de fecha
+        /// <summary>
+        /// Comprueba si ya hay una reserva para el mismo socio, actividad y fecha.
+        /// </summary>
+        /// <param name="socioId">Identificador del socio.</param>
+        /// <param name="actividadId">Identificador de la actividad.</param>
+        /// <param name="fecha">Fecha de la reserva.</param>
+        /// <param name="reservaIdExcluir">Reserva a excluir en la comprobación.</param>
+        /// <returns><c>true</c> si existe una reserva duplicada; en caso contrario, <c>false</c>.</returns>
         public bool ExisteReservaDuplicada(int socioId, int actividadId, System.DateTime fecha, int? reservaIdExcluir = null)
         {
             var start = fecha.Date;
@@ -92,21 +120,29 @@ namespace Model
             return false;
         }
 
-        // ACTIVIDADES
-        // Devuelve todas las actividades de la base de datos en una lista.
+        /// <summary>
+        /// Devuelve todas las actividades de la base de datos.
+        /// </summary>
+        /// <returns>Lista de actividades.</returns>
         public List<Actividad> SeleccionarActividades()
         {
             return Context.Actividad.ToList();
         }
 
-        // Inserta una nueva actividad.
+        /// <summary>
+        /// Guarda una actividad nueva.
+        /// </summary>
+        /// <param name="actividad">Actividad a guardar.</param>
         public void GuardarActividad(Actividad actividad)
         {
             _context.Actividad.Add(actividad);
             _context.SaveChanges();
         }
 
-        // Actualiza los datos de una actividad existente.
+        /// <summary>
+        /// Actualiza los datos de una actividad existente.
+        /// </summary>
+        /// <param name="actividad">Actividad con los datos actualizados.</param>
         public void ActualizarActividad(Actividad actividad)
         {
             var existente = Context.Actividad.Find(actividad.Id);
@@ -116,7 +152,11 @@ namespace Model
             _context.SaveChanges();
         }
 
-        // Intenta eliminar una actividad. Devuelve false si no existe o si tiene reservas asociadas.
+        /// <summary>
+        /// Intenta eliminar una actividad.
+        /// </summary>
+        /// <param name="actividad">Actividad a eliminar.</param>
+        /// <returns><c>true</c> si se eliminó; en caso contrario, <c>false</c>.</returns>
         public bool EliminarActividad(Actividad actividad)
         {
             var existente = _context.Actividad.Find(actividad.Id);
@@ -127,32 +167,40 @@ namespace Model
             {
                 if (r.ActividadId == actividad.Id)
                 {
-                    tieneReservas = true; // hay reservas que la usan
+                    tieneReservas = true;
                     break;
                 }
             }
-            if (tieneReservas) return false; // evitamos romper la relación
+            if (tieneReservas) return false;
 
             Context.Actividad.Remove(existente);
             Context.SaveChanges();
             return true;
         }
 
-        // SOCIOS
-        // Devuelve todos los socios.
+        /// <summary>
+        /// Devuelve todos los socios.
+        /// </summary>
+        /// <returns>Lista de socios.</returns>
         public List<Socio> SeleccionarSocios()
         {
             return Context.Socio.ToList();
         }
 
-        // Inserta un nuevo socio.
+        /// <summary>
+        /// Guarda un socio nuevo.
+        /// </summary>
+        /// <param name="socio">Socio a guardar.</param>
         public void GuardarSocio(Socio socio)
         {
             Context.Socio.Add(socio);
             Context.SaveChanges();
         }
 
-        // Actualiza un socio existente.
+        /// <summary>
+        /// Actualiza un socio existente.
+        /// </summary>
+        /// <param name="socio">Socio con los datos actualizados.</param>
         public void ActualizarSocio(Socio socio)
         {
             var existente = Context.Socio.Find(socio.Id);
@@ -163,7 +211,11 @@ namespace Model
             _context.SaveChanges();
         }
 
-        // Intenta eliminar un socio. Devuelve false si no existe o si tiene reservas.
+        /// <summary>
+        /// Intenta eliminar un socio.
+        /// </summary>
+        /// <param name="socio">Socio a eliminar.</param>
+        /// <returns><c>true</c> si se eliminó; en caso contrario, <c>false</c>.</returns>
         public bool EliminarSocio(Socio socio)
         {
             var existente = _context.Socio.Find(socio.Id);
@@ -174,7 +226,7 @@ namespace Model
             {
                 if (r.SocioId == socio.Id)
                 {
-                    tieneReservas = true; // no se puede borrar si tiene reservas
+                    tieneReservas = true;
                     break;
                 }
             }
@@ -185,8 +237,10 @@ namespace Model
             return true;
         }
 
-        // RESERVAS
-        // Devuelve las reservas e incluye los datos de socio y actividad para mostrarlos en la vista.
+        /// <summary>
+        /// Devuelve las reservas e incluye los datos de socio y actividad.
+        /// </summary>
+        /// <returns>Lista de reservas.</returns>
         public List<Reserva> SeleccionarReservas()
         {
                 return Context.Reserva.
@@ -196,30 +250,36 @@ namespace Model
 
         }
 
-        // Inserta una nueva reserva. Devuelve false si no hay aforo o si ya existe.
+        /// <summary>
+        /// Guarda una reserva nueva.
+        /// </summary>
+        /// <param name="reserva">Reserva a guardar.</param>
+        /// <returns><c>true</c> si se guardó; en caso contrario, <c>false</c>.</returns>
         public bool GuardarReserva(Reserva reserva)
         {
-            // No se permiten reservas en fechas anteriores al día actual
             if (reserva.Fecha.Date < System.DateTime.Today) return false;
-            if (!HayPlazasActividad(reserva.ActividadId)) return false; // aforo lleno
-            if (ExisteReservaDuplicada(reserva.SocioId, reserva.ActividadId, reserva.Fecha)) return false; // ya reservó mismo día
+            if (!HayPlazasActividad(reserva.ActividadId)) return false;
+            if (ExisteReservaDuplicada(reserva.SocioId, reserva.ActividadId, reserva.Fecha)) return false;
 
             Context.Reserva.Add(reserva);
             Context.SaveChanges();
             return true;
         }
 
-        // Actualiza una reserva existente. Devuelve false si falla alguna validación.
+        /// <summary>
+        /// Actualiza una reserva existente.
+        /// </summary>
+        /// <param name="reserva">Reserva con los datos actualizados.</param>
+        /// <returns><c>true</c> si se actualizó; en caso contrario, <c>false</c>.</returns>
         public bool ActualizarReserva(Reserva reserva)
         {
             var existente = Context.Reserva.Find(reserva.Id);
             if (existente == null) return false;
 
-            // No se permiten reservas en fechas anteriores al día actual
             if (reserva.Fecha.Date < System.DateTime.Today) return false;
 
-            if (!HayPlazasActividad(reserva.ActividadId, reserva.Id)) return false; // aforo al editar
-            if (ExisteReservaDuplicada(reserva.SocioId, reserva.ActividadId, reserva.Fecha, reserva.Id)) return false; // duplicado al editar
+            if (!HayPlazasActividad(reserva.ActividadId, reserva.Id)) return false;
+            if (ExisteReservaDuplicada(reserva.SocioId, reserva.ActividadId, reserva.Fecha, reserva.Id)) return false;
 
             existente.SocioId = reserva.SocioId;
             existente.ActividadId = reserva.ActividadId;
@@ -228,7 +288,11 @@ namespace Model
             return true;
         }
 
-        // Elimina una reserva existente. Devuelve false si no se encontró.
+        /// <summary>
+        /// Elimina una reserva existente.
+        /// </summary>
+        /// <param name="reserva">Reserva a eliminar.</param>
+        /// <returns><c>true</c> si se eliminó; en caso contrario, <c>false</c>.</returns>
         public bool EliminarReserva(Reserva reserva)
         {
             var existente = Context.Reserva.Find(reserva.Id);
