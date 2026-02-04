@@ -1,0 +1,69 @@
+\doxysection{Model\+View.\+Reservas\+View\+Model Class Reference}
+\hypertarget{class_model_view_1_1_reservas_view_model}{}\label{class_model_view_1_1_reservas_view_model}\index{ModelView.ReservasViewModel@{ModelView.ReservasViewModel}}
+
+
+View\+Model que conecta la vista de reservas con la lógica y los datos.  
+
+
+Inheritance diagram for Model\+View.\+Reservas\+View\+Model:\+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{class_model_view_1_1_reservas_view_model}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{class_model_view_1_1_reservas_view_model_adf5af2d1dd0ce65fb7805ec17d5c4f58}\label{class_model_view_1_1_reservas_view_model_adf5af2d1dd0ce65fb7805ec17d5c4f58} 
+{\bfseries Reservas\+View\+Model} ()
+\begin{DoxyCompactList}\small\item\em Constructor del View\+Model de reservas. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Properties}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{class_model_view_1_1_reservas_view_model_aeed85b342414b55dba6947fe98e4c984}\label{class_model_view_1_1_reservas_view_model_aeed85b342414b55dba6947fe98e4c984} 
+Observable\+Collection$<$ \doxymbox{\hyperlink{class_model_1_1_reserva}{Reserva}} $>$ {\bfseries Lista\+Reservas}\hspace{0.3cm}{\ttfamily  \+[get, set]\+}
+\begin{DoxyCompactList}\small\item\em Lista de reservas para el Data\+Grid. \end{DoxyCompactList}\item 
+\Hypertarget{class_model_view_1_1_reservas_view_model_a61cd7a5fc6e83ffeb22ceebfe89f0797}\label{class_model_view_1_1_reservas_view_model_a61cd7a5fc6e83ffeb22ceebfe89f0797} 
+Observable\+Collection$<$ \doxymbox{\hyperlink{class_model_1_1_socio}{Socio}} $>$ {\bfseries Lista\+Socios}\hspace{0.3cm}{\ttfamily  \+[get, set]\+}
+\begin{DoxyCompactList}\small\item\em Lista de socios para el selector. \end{DoxyCompactList}\item 
+\Hypertarget{class_model_view_1_1_reservas_view_model_ac6a0372ae9115c63d4b1179edeec4d5a}\label{class_model_view_1_1_reservas_view_model_ac6a0372ae9115c63d4b1179edeec4d5a} 
+Observable\+Collection$<$ \doxymbox{\hyperlink{class_model_1_1_actividad}{Actividad}} $>$ {\bfseries Lista\+Actividades}\hspace{0.3cm}{\ttfamily  \+[get, set]\+}
+\begin{DoxyCompactList}\small\item\em Lista de actividades para el selector. \end{DoxyCompactList}\item 
+\Hypertarget{class_model_view_1_1_reservas_view_model_a2ff72ff1a67eb011af047c9bf1ba4182}\label{class_model_view_1_1_reservas_view_model_a2ff72ff1a67eb011af047c9bf1ba4182} 
+\doxymbox{\hyperlink{class_model_1_1_reserva}{Reserva}} {\bfseries Reserva\+En\+Formulario}\hspace{0.3cm}{\ttfamily  \+[get, set]\+}
+\begin{DoxyCompactList}\small\item\em \doxylink{class_model_1_1_reserva}{Reserva} enlazada al formulario. \end{DoxyCompactList}\item 
+\Hypertarget{class_model_view_1_1_reservas_view_model_a8fa3f35728d276b0185a97374d87ccca}\label{class_model_view_1_1_reservas_view_model_a8fa3f35728d276b0185a97374d87ccca} 
+\doxymbox{\hyperlink{class_model_1_1_reserva}{Reserva}} {\bfseries Reserva\+Seleccionada\+Grid}\hspace{0.3cm}{\ttfamily  \+[get, set]\+}
+\begin{DoxyCompactList}\small\item\em \doxylink{class_model_1_1_reserva}{Reserva} seleccionada en el Data\+Grid. \end{DoxyCompactList}\item 
+\Hypertarget{class_model_view_1_1_reservas_view_model_a7180cf973c288136d291ee4cb1e73237}\label{class_model_view_1_1_reservas_view_model_a7180cf973c288136d291ee4cb1e73237} 
+ICommand {\bfseries Guardar\+Command}\hspace{0.3cm}{\ttfamily  \+[get]\+}
+\begin{DoxyCompactList}\small\item\em Comando para guardar. \end{DoxyCompactList}\item 
+\Hypertarget{class_model_view_1_1_reservas_view_model_affe7bba515e630c2d9b9843e2fa3cadc}\label{class_model_view_1_1_reservas_view_model_affe7bba515e630c2d9b9843e2fa3cadc} 
+ICommand {\bfseries Nuevo\+Command}\hspace{0.3cm}{\ttfamily  \+[get]\+}
+\begin{DoxyCompactList}\small\item\em Comando para crear una reserva nueva Comando para eliminar. \end{DoxyCompactList}\item 
+\Hypertarget{class_model_view_1_1_reservas_view_model_a989c0226898929af37391c6d817872c5}\label{class_model_view_1_1_reservas_view_model_a989c0226898929af37391c6d817872c5} 
+ICommand {\bfseries Eliminar\+Command}\hspace{0.3cm}{\ttfamily  \+[get]\+}
+\begin{DoxyCompactList}\small\item\em Comando para eliminar. \end{DoxyCompactList}\item 
+\Hypertarget{class_model_view_1_1_reservas_view_model_a53f5ce59756150d5e63c0538bda6d8b3}\label{class_model_view_1_1_reservas_view_model_a53f5ce59756150d5e63c0538bda6d8b3} 
+ICommand {\bfseries Editar\+Command}\hspace{0.3cm}{\ttfamily  \+[get]\+}
+\begin{DoxyCompactList}\small\item\em Comando para editar. \end{DoxyCompactList}\item 
+\Hypertarget{class_model_view_1_1_reservas_view_model_a67316cfc1779d67cef18a27c787fee09}\label{class_model_view_1_1_reservas_view_model_a67316cfc1779d67cef18a27c787fee09} 
+ICommand {\bfseries Abrir\+Socios\+Command}\hspace{0.3cm}{\ttfamily  \+[get]\+}
+\begin{DoxyCompactList}\small\item\em Comando para abrir la vista de socios. \end{DoxyCompactList}\item 
+\Hypertarget{class_model_view_1_1_reservas_view_model_a78eb1100b5e7b2903e5de57caaa8ba9c}\label{class_model_view_1_1_reservas_view_model_a78eb1100b5e7b2903e5de57caaa8ba9c} 
+ICommand {\bfseries Abrir\+Actividades\+Command}\hspace{0.3cm}{\ttfamily  \+[get]\+}
+\begin{DoxyCompactList}\small\item\em Comando para abrir la vista de actividades. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Events}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{class_model_view_1_1_reservas_view_model_a88ffae7c46222f8be84ae987bdb5d47a}\label{class_model_view_1_1_reservas_view_model_a88ffae7c46222f8be84ae987bdb5d47a} 
+Property\+Changed\+Event\+Handler {\bfseries Property\+Changed}
+\begin{DoxyCompactList}\small\item\em Evento para avisar cambios de propiedades. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+View\+Model que conecta la vista de reservas con la lógica y los datos. 
+
+The documentation for this class was generated from the following file:\+\begin{DoxyCompactItemize}
+\item 
+C:\+/\+\+Users/\+\+David Oviedo/\+\+Desktop/\+\+Actividad-\/2-\/\+MVVM\+\_\+\+David-\/\+Oviedo/\+\+Model\+View/\+Reservas\+View\+Model.\+cs\end{DoxyCompactItemize}

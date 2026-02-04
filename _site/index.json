@@ -1,0 +1,22 @@
+{
+  "docs/getting-started.html": {
+    "href": "docs/getting-started.html",
+    "title": "Getting Started | CentroDeportivo",
+    "summary": "Getting Started"
+  },
+  "docs/introduction.html": {
+    "href": "docs/introduction.html",
+    "title": "Introduction | CentroDeportivo",
+    "summary": "Introduction"
+  },
+  "index.html": {
+    "href": "index.html",
+    "title": "This is the HOMEPAGE. | CentroDeportivo",
+    "summary": "This is the HOMEPAGE. Refer to Markdown for how to write markdown files. Quick Start Notes: Add images to the images folder if the file is referencing an image."
+  },
+  "packages/EntityFramework.6.5.1/README.html": {
+    "href": "packages/EntityFramework.6.5.1/README.html",
+    "title": "Entity Framework 6 | CentroDeportivo",
+    "summary": "Entity Framework 6 Entity Framework 6 (EF6) is a tried and tested object-relational mapper for .NET with many years of feature development and stabilization. It eliminates the need for most of the data-access code that developers usually need to write. Status and Support The latest version of EF6 is still supported by Microsoft--see Entity Framework Support Policies for details. However, EF6 is no longer being actively developed. This means that: Security issues will be fixed, as for any supported product. High-impact bugs, typically those impacting a very large number of users, may be fixed. Other bugs will not be fixed. New features will not be implemented This plan focuses on stability of the codebase and compatibility of new versions above all else, excepting security. In general, the EF6 codebase is reliable and has been stable for several years with few significant bugs. However, due to the complexity and number of usage scenarios, and also the sheer number of applications that use EF6, any change has the potential to regress existing behaviors. This is why we will be making only security fixes. Also, we will not be accepting pull requests made by the community, again to ensure stability of the codebase. Entity Framework Core Entity Framework Core (EF Core) is a lightweight and extensible version of Entity Framework and continues to be actively developed on the EFCore GitHub repo. EF Core is developed exclusively for modern .NET and does not run on .NET Framework. EF Core includes many improvements and new features over EF6. EF Core has a different architecture to EF6 and takes a very different approach to its internals--for example, EF Core does not support a visual designer or EDMX files. However, most EF6 projects can be ported to EF Core with some amount of work--see Port from EF6 to EF Core for a guide. Getting help See the EF6 docs for installation, documentation, tutorials, samples, etc. This documentation is no longer being updated, but still contains useful and usable content. The EF team is focusing efforts on EF Core, and hence team members are unlikely to respond to issues filed on this repo. We recommend asking questions on Stack Overflow. You may instead choose to contact a Microsoft Support professional for support. Please note that this may incur a fee. EF6 Tools for Visual Studio The code for the EF6 Tools for VS (including the visual designer) can be found in the EF6Tools repo. EF6 PowerTools The EF6 PowerTools is a community-driven project with its own GitHub repo."
+  }
+}

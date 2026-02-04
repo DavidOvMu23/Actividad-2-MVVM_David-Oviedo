@@ -1,0 +1,4 @@
+var searchData=
+[
+  ['_5flayout_3a_20landing_0',['_layout: landing',['../md__c_1_2_users_2_david_01_oviedo_2_desktop_2_actividad-2-_m_v_v_m___david-_oviedo_2index.html#autotoc_md3',1,'']]]
+];

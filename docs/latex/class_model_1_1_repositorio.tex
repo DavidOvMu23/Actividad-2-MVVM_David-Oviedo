@@ -1,0 +1,375 @@
+\doxysection{Model.\+Repositorio Class Reference}
+\hypertarget{class_model_1_1_repositorio}{}\label{class_model_1_1_repositorio}\index{Model.Repositorio@{Model.Repositorio}}
+
+
+\doxylink{class_model_1_1_repositorio}{Repositorio} con acceso a datos y validaciones de actividades, socios y reservas.  
+
+
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+bool \doxymbox{\hyperlink{class_model_1_1_repositorio_a3d42dea9790767c4949b2010a8f744c6}{Es\+Email\+Valido}} (string email)
+\begin{DoxyCompactList}\small\item\em Comprueba si el email tiene un formato válido usando una expresión regular. \end{DoxyCompactList}\item 
+bool \doxymbox{\hyperlink{class_model_1_1_repositorio_a3fbefb0717c1762adb870c3e5889fe88}{Hay\+Plazas\+Actividad}} (int actividad\+Id, int? reserva\+Id\+Excluir=null)
+\begin{DoxyCompactList}\small\item\em Comprueba si aún quedan plazas en la actividad. \end{DoxyCompactList}\item 
+bool \doxymbox{\hyperlink{class_model_1_1_repositorio_ab3a7bd485f193016834ae4575d28bac4}{Existe\+Reserva\+Duplicada}} (int socio\+Id, int actividad\+Id, System.\+Date\+Time fecha, int? reserva\+Id\+Excluir=null)
+\begin{DoxyCompactList}\small\item\em Comprueba si ya hay una reserva para el mismo socio, actividad y fecha. \end{DoxyCompactList}\item 
+List$<$ \doxymbox{\hyperlink{class_model_1_1_actividad}{Actividad}} $>$ \doxymbox{\hyperlink{class_model_1_1_repositorio_a39c60f8a662c0cdbfecacdbc26ea7c3d}{Seleccionar\+Actividades}} ()
+\begin{DoxyCompactList}\small\item\em Devuelve todas las actividades de la base de datos. \end{DoxyCompactList}\item 
+void \doxymbox{\hyperlink{class_model_1_1_repositorio_af6c70916f9424ddb5496d63e8a535404}{Guardar\+Actividad}} (\doxymbox{\hyperlink{class_model_1_1_actividad}{Actividad}} actividad)
+\begin{DoxyCompactList}\small\item\em Guarda una actividad nueva. \end{DoxyCompactList}\item 
+void \doxymbox{\hyperlink{class_model_1_1_repositorio_aa7f1947f9c5bce1b9f339db8b8d5270d}{Actualizar\+Actividad}} (\doxymbox{\hyperlink{class_model_1_1_actividad}{Actividad}} actividad)
+\begin{DoxyCompactList}\small\item\em Actualiza los datos de una actividad existente. \end{DoxyCompactList}\item 
+bool \doxymbox{\hyperlink{class_model_1_1_repositorio_a36db276fd3496bc59adac451e54da849}{Eliminar\+Actividad}} (\doxymbox{\hyperlink{class_model_1_1_actividad}{Actividad}} actividad)
+\begin{DoxyCompactList}\small\item\em Intenta eliminar una actividad. \end{DoxyCompactList}\item 
+List$<$ \doxymbox{\hyperlink{class_model_1_1_socio}{Socio}} $>$ \doxymbox{\hyperlink{class_model_1_1_repositorio_a7acdaaf7c78bc721850a2838a02c99df}{Seleccionar\+Socios}} ()
+\begin{DoxyCompactList}\small\item\em Devuelve todos los socios. \end{DoxyCompactList}\item 
+void \doxymbox{\hyperlink{class_model_1_1_repositorio_a4fbe8a08b8b1af0a2efd8d87119928f9}{Guardar\+Socio}} (\doxymbox{\hyperlink{class_model_1_1_socio}{Socio}} socio)
+\begin{DoxyCompactList}\small\item\em Guarda un socio nuevo. \end{DoxyCompactList}\item 
+void \doxymbox{\hyperlink{class_model_1_1_repositorio_a33029b820064e6e735de5013fcaf48e7}{Actualizar\+Socio}} (\doxymbox{\hyperlink{class_model_1_1_socio}{Socio}} socio)
+\begin{DoxyCompactList}\small\item\em Actualiza un socio existente. \end{DoxyCompactList}\item 
+bool \doxymbox{\hyperlink{class_model_1_1_repositorio_aa8226f1812d07541dd29c44fd04c5c5d}{Eliminar\+Socio}} (\doxymbox{\hyperlink{class_model_1_1_socio}{Socio}} socio)
+\begin{DoxyCompactList}\small\item\em Intenta eliminar un socio. \end{DoxyCompactList}\item 
+List$<$ \doxymbox{\hyperlink{class_model_1_1_reserva}{Reserva}} $>$ \doxymbox{\hyperlink{class_model_1_1_repositorio_a96385a4f00e73512e94291a60d255833}{Seleccionar\+Reservas}} ()
+\begin{DoxyCompactList}\small\item\em Devuelve las reservas e incluye los datos de socio y actividad. \end{DoxyCompactList}\item 
+bool \doxymbox{\hyperlink{class_model_1_1_repositorio_af759eca134cd009ff60ece031d69f384}{Guardar\+Reserva}} (\doxymbox{\hyperlink{class_model_1_1_reserva}{Reserva}} reserva)
+\begin{DoxyCompactList}\small\item\em Guarda una reserva nueva. \end{DoxyCompactList}\item 
+bool \doxymbox{\hyperlink{class_model_1_1_repositorio_a4195cf0a270c613520f9cfee1a32d284}{Actualizar\+Reserva}} (\doxymbox{\hyperlink{class_model_1_1_reserva}{Reserva}} reserva)
+\begin{DoxyCompactList}\small\item\em Actualiza una reserva existente. \end{DoxyCompactList}\item 
+bool \doxymbox{\hyperlink{class_model_1_1_repositorio_ae3e4c6595c98c3dc3546b8ff3bdc0381}{Eliminar\+Reserva}} (\doxymbox{\hyperlink{class_model_1_1_reserva}{Reserva}} reserva)
+\begin{DoxyCompactList}\small\item\em Elimina una reserva existente. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Static Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+static bool \doxymbox{\hyperlink{class_model_1_1_repositorio_a9388cd2eb635e132211ae999648cf1fb}{Es\+Fecha\+Reserva\+Valida}} (System.\+Date\+Time fecha)
+\begin{DoxyCompactList}\small\item\em Comprueba si una fecha de reserva es válida (no en el pasado). \end{DoxyCompactList}\item 
+static bool \doxymbox{\hyperlink{class_model_1_1_repositorio_a09f2415a287723e2c8cb7ff8062e5b27}{Hay\+Plazas\+Disponibles}} (int aforo\+Maximo, int ocupados)
+\begin{DoxyCompactList}\small\item\em Comprueba si quedan plazas según el aforo y los ocupados. \end{DoxyCompactList}\item 
+static bool \doxymbox{\hyperlink{class_model_1_1_repositorio_ad4ab6f05206fb3be7a340b11275cc38c}{Puede\+Guardar\+Reserva}} (int aforo\+Maximo, int ocupados, System.\+Date\+Time fecha, bool es\+Duplicado)
+\begin{DoxyCompactList}\small\item\em Dice si se puede guardar una reserva según aforo, duplicados y fecha. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\doxylink{class_model_1_1_repositorio}{Repositorio} con acceso a datos y validaciones de actividades, socios y reservas. 
+
+\label{doc-func-members}
+\Hypertarget{class_model_1_1_repositorio_doc-func-members}
+\doxysubsection{Member Function Documentation}
+\Hypertarget{class_model_1_1_repositorio_aa7f1947f9c5bce1b9f339db8b8d5270d}\index{Model.Repositorio@{Model.Repositorio}!ActualizarActividad@{ActualizarActividad}}
+\index{ActualizarActividad@{ActualizarActividad}!Model.Repositorio@{Model.Repositorio}}
+\doxysubsubsection{\texorpdfstring{ActualizarActividad()}{ActualizarActividad()}}
+{\footnotesize\ttfamily \label{class_model_1_1_repositorio_aa7f1947f9c5bce1b9f339db8b8d5270d} 
+void Model.\+Repositorio.\+Actualizar\+Actividad (\begin{DoxyParamCaption}\item[{\doxymbox{\hyperlink{class_model_1_1_actividad}{Actividad}}}]{actividad}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Actualiza los datos de una actividad existente. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em actividad} & \doxylink{class_model_1_1_actividad}{Actividad} con los datos actualizados.\\
+\hline
+\end{DoxyParams}
+\Hypertarget{class_model_1_1_repositorio_a4195cf0a270c613520f9cfee1a32d284}\index{Model.Repositorio@{Model.Repositorio}!ActualizarReserva@{ActualizarReserva}}
+\index{ActualizarReserva@{ActualizarReserva}!Model.Repositorio@{Model.Repositorio}}
+\doxysubsubsection{\texorpdfstring{ActualizarReserva()}{ActualizarReserva()}}
+{\footnotesize\ttfamily \label{class_model_1_1_repositorio_a4195cf0a270c613520f9cfee1a32d284} 
+bool Model.\+Repositorio.\+Actualizar\+Reserva (\begin{DoxyParamCaption}\item[{\doxymbox{\hyperlink{class_model_1_1_reserva}{Reserva}}}]{reserva}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Actualiza una reserva existente. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em reserva} & \doxylink{class_model_1_1_reserva}{Reserva} con los datos actualizados.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+{\ttfamily true} si se actualizó; en caso contrario, {\ttfamily false}.
+\end{DoxyReturn}
+\Hypertarget{class_model_1_1_repositorio_a33029b820064e6e735de5013fcaf48e7}\index{Model.Repositorio@{Model.Repositorio}!ActualizarSocio@{ActualizarSocio}}
+\index{ActualizarSocio@{ActualizarSocio}!Model.Repositorio@{Model.Repositorio}}
+\doxysubsubsection{\texorpdfstring{ActualizarSocio()}{ActualizarSocio()}}
+{\footnotesize\ttfamily \label{class_model_1_1_repositorio_a33029b820064e6e735de5013fcaf48e7} 
+void Model.\+Repositorio.\+Actualizar\+Socio (\begin{DoxyParamCaption}\item[{\doxymbox{\hyperlink{class_model_1_1_socio}{Socio}}}]{socio}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Actualiza un socio existente. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em socio} & \doxylink{class_model_1_1_socio}{Socio} con los datos actualizados.\\
+\hline
+\end{DoxyParams}
+\Hypertarget{class_model_1_1_repositorio_a36db276fd3496bc59adac451e54da849}\index{Model.Repositorio@{Model.Repositorio}!EliminarActividad@{EliminarActividad}}
+\index{EliminarActividad@{EliminarActividad}!Model.Repositorio@{Model.Repositorio}}
+\doxysubsubsection{\texorpdfstring{EliminarActividad()}{EliminarActividad()}}
+{\footnotesize\ttfamily \label{class_model_1_1_repositorio_a36db276fd3496bc59adac451e54da849} 
+bool Model.\+Repositorio.\+Eliminar\+Actividad (\begin{DoxyParamCaption}\item[{\doxymbox{\hyperlink{class_model_1_1_actividad}{Actividad}}}]{actividad}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Intenta eliminar una actividad. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em actividad} & \doxylink{class_model_1_1_actividad}{Actividad} a eliminar.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+{\ttfamily true} si se eliminó; en caso contrario, {\ttfamily false}.
+\end{DoxyReturn}
+\Hypertarget{class_model_1_1_repositorio_ae3e4c6595c98c3dc3546b8ff3bdc0381}\index{Model.Repositorio@{Model.Repositorio}!EliminarReserva@{EliminarReserva}}
+\index{EliminarReserva@{EliminarReserva}!Model.Repositorio@{Model.Repositorio}}
+\doxysubsubsection{\texorpdfstring{EliminarReserva()}{EliminarReserva()}}
+{\footnotesize\ttfamily \label{class_model_1_1_repositorio_ae3e4c6595c98c3dc3546b8ff3bdc0381} 
+bool Model.\+Repositorio.\+Eliminar\+Reserva (\begin{DoxyParamCaption}\item[{\doxymbox{\hyperlink{class_model_1_1_reserva}{Reserva}}}]{reserva}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Elimina una reserva existente. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em reserva} & \doxylink{class_model_1_1_reserva}{Reserva} a eliminar.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+{\ttfamily true} si se eliminó; en caso contrario, {\ttfamily false}.
+\end{DoxyReturn}
+\Hypertarget{class_model_1_1_repositorio_aa8226f1812d07541dd29c44fd04c5c5d}\index{Model.Repositorio@{Model.Repositorio}!EliminarSocio@{EliminarSocio}}
+\index{EliminarSocio@{EliminarSocio}!Model.Repositorio@{Model.Repositorio}}
+\doxysubsubsection{\texorpdfstring{EliminarSocio()}{EliminarSocio()}}
+{\footnotesize\ttfamily \label{class_model_1_1_repositorio_aa8226f1812d07541dd29c44fd04c5c5d} 
+bool Model.\+Repositorio.\+Eliminar\+Socio (\begin{DoxyParamCaption}\item[{\doxymbox{\hyperlink{class_model_1_1_socio}{Socio}}}]{socio}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Intenta eliminar un socio. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em socio} & \doxylink{class_model_1_1_socio}{Socio} a eliminar.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+{\ttfamily true} si se eliminó; en caso contrario, {\ttfamily false}.
+\end{DoxyReturn}
+\Hypertarget{class_model_1_1_repositorio_a3d42dea9790767c4949b2010a8f744c6}\index{Model.Repositorio@{Model.Repositorio}!EsEmailValido@{EsEmailValido}}
+\index{EsEmailValido@{EsEmailValido}!Model.Repositorio@{Model.Repositorio}}
+\doxysubsubsection{\texorpdfstring{EsEmailValido()}{EsEmailValido()}}
+{\footnotesize\ttfamily \label{class_model_1_1_repositorio_a3d42dea9790767c4949b2010a8f744c6} 
+bool Model.\+Repositorio.\+Es\+Email\+Valido (\begin{DoxyParamCaption}\item[{string}]{email}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Comprueba si el email tiene un formato válido usando una expresión regular. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em email} & Email a validar.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+{\ttfamily true} si el formato es válido; en caso contrario, {\ttfamily false}.
+\end{DoxyReturn}
+\Hypertarget{class_model_1_1_repositorio_a9388cd2eb635e132211ae999648cf1fb}\index{Model.Repositorio@{Model.Repositorio}!EsFechaReservaValida@{EsFechaReservaValida}}
+\index{EsFechaReservaValida@{EsFechaReservaValida}!Model.Repositorio@{Model.Repositorio}}
+\doxysubsubsection{\texorpdfstring{EsFechaReservaValida()}{EsFechaReservaValida()}}
+{\footnotesize\ttfamily \label{class_model_1_1_repositorio_a9388cd2eb635e132211ae999648cf1fb} 
+bool Model.\+Repositorio.\+Es\+Fecha\+Reserva\+Valida (\begin{DoxyParamCaption}\item[{System.\+Date\+Time}]{fecha}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}}
+
+
+
+Comprueba si una fecha de reserva es válida (no en el pasado). 
+
+
+\begin{DoxyParams}{Parameters}
+{\em fecha} & Fecha a validar.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+{\ttfamily true} si la fecha es válida; en caso contrario, {\ttfamily false}.
+\end{DoxyReturn}
+\Hypertarget{class_model_1_1_repositorio_ab3a7bd485f193016834ae4575d28bac4}\index{Model.Repositorio@{Model.Repositorio}!ExisteReservaDuplicada@{ExisteReservaDuplicada}}
+\index{ExisteReservaDuplicada@{ExisteReservaDuplicada}!Model.Repositorio@{Model.Repositorio}}
+\doxysubsubsection{\texorpdfstring{ExisteReservaDuplicada()}{ExisteReservaDuplicada()}}
+{\footnotesize\ttfamily \label{class_model_1_1_repositorio_ab3a7bd485f193016834ae4575d28bac4} 
+bool Model.\+Repositorio.\+Existe\+Reserva\+Duplicada (\begin{DoxyParamCaption}\item[{int}]{socio\+Id}{, }\item[{int}]{actividad\+Id}{, }\item[{System.\+Date\+Time}]{fecha}{, }\item[{int?}]{reserva\+Id\+Excluir}{ = {\ttfamily null}}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Comprueba si ya hay una reserva para el mismo socio, actividad y fecha. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em socio\+Id} & Identificador del socio.\\
+\hline
+{\em actividad\+Id} & Identificador de la actividad.\\
+\hline
+{\em fecha} & Fecha de la reserva.\\
+\hline
+{\em reserva\+Id\+Excluir} & \doxylink{class_model_1_1_reserva}{Reserva} a excluir en la comprobación.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+{\ttfamily true} si existe una reserva duplicada; en caso contrario, {\ttfamily false}.
+\end{DoxyReturn}
+\Hypertarget{class_model_1_1_repositorio_af6c70916f9424ddb5496d63e8a535404}\index{Model.Repositorio@{Model.Repositorio}!GuardarActividad@{GuardarActividad}}
+\index{GuardarActividad@{GuardarActividad}!Model.Repositorio@{Model.Repositorio}}
+\doxysubsubsection{\texorpdfstring{GuardarActividad()}{GuardarActividad()}}
+{\footnotesize\ttfamily \label{class_model_1_1_repositorio_af6c70916f9424ddb5496d63e8a535404} 
+void Model.\+Repositorio.\+Guardar\+Actividad (\begin{DoxyParamCaption}\item[{\doxymbox{\hyperlink{class_model_1_1_actividad}{Actividad}}}]{actividad}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Guarda una actividad nueva. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em actividad} & \doxylink{class_model_1_1_actividad}{Actividad} a guardar.\\
+\hline
+\end{DoxyParams}
+\Hypertarget{class_model_1_1_repositorio_af759eca134cd009ff60ece031d69f384}\index{Model.Repositorio@{Model.Repositorio}!GuardarReserva@{GuardarReserva}}
+\index{GuardarReserva@{GuardarReserva}!Model.Repositorio@{Model.Repositorio}}
+\doxysubsubsection{\texorpdfstring{GuardarReserva()}{GuardarReserva()}}
+{\footnotesize\ttfamily \label{class_model_1_1_repositorio_af759eca134cd009ff60ece031d69f384} 
+bool Model.\+Repositorio.\+Guardar\+Reserva (\begin{DoxyParamCaption}\item[{\doxymbox{\hyperlink{class_model_1_1_reserva}{Reserva}}}]{reserva}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Guarda una reserva nueva. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em reserva} & \doxylink{class_model_1_1_reserva}{Reserva} a guardar.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+{\ttfamily true} si se guardó; en caso contrario, {\ttfamily false}.
+\end{DoxyReturn}
+\Hypertarget{class_model_1_1_repositorio_a4fbe8a08b8b1af0a2efd8d87119928f9}\index{Model.Repositorio@{Model.Repositorio}!GuardarSocio@{GuardarSocio}}
+\index{GuardarSocio@{GuardarSocio}!Model.Repositorio@{Model.Repositorio}}
+\doxysubsubsection{\texorpdfstring{GuardarSocio()}{GuardarSocio()}}
+{\footnotesize\ttfamily \label{class_model_1_1_repositorio_a4fbe8a08b8b1af0a2efd8d87119928f9} 
+void Model.\+Repositorio.\+Guardar\+Socio (\begin{DoxyParamCaption}\item[{\doxymbox{\hyperlink{class_model_1_1_socio}{Socio}}}]{socio}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Guarda un socio nuevo. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em socio} & \doxylink{class_model_1_1_socio}{Socio} a guardar.\\
+\hline
+\end{DoxyParams}
+\Hypertarget{class_model_1_1_repositorio_a3fbefb0717c1762adb870c3e5889fe88}\index{Model.Repositorio@{Model.Repositorio}!HayPlazasActividad@{HayPlazasActividad}}
+\index{HayPlazasActividad@{HayPlazasActividad}!Model.Repositorio@{Model.Repositorio}}
+\doxysubsubsection{\texorpdfstring{HayPlazasActividad()}{HayPlazasActividad()}}
+{\footnotesize\ttfamily \label{class_model_1_1_repositorio_a3fbefb0717c1762adb870c3e5889fe88} 
+bool Model.\+Repositorio.\+Hay\+Plazas\+Actividad (\begin{DoxyParamCaption}\item[{int}]{actividad\+Id}{, }\item[{int?}]{reserva\+Id\+Excluir}{ = {\ttfamily null}}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Comprueba si aún quedan plazas en la actividad. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em actividad\+Id} & Identificador de la actividad.\\
+\hline
+{\em reserva\+Id\+Excluir} & \doxylink{class_model_1_1_reserva}{Reserva} a excluir al contar ocupación.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+{\ttfamily true} si hay plazas disponibles; en caso contrario, {\ttfamily false}.
+\end{DoxyReturn}
+\Hypertarget{class_model_1_1_repositorio_a09f2415a287723e2c8cb7ff8062e5b27}\index{Model.Repositorio@{Model.Repositorio}!HayPlazasDisponibles@{HayPlazasDisponibles}}
+\index{HayPlazasDisponibles@{HayPlazasDisponibles}!Model.Repositorio@{Model.Repositorio}}
+\doxysubsubsection{\texorpdfstring{HayPlazasDisponibles()}{HayPlazasDisponibles()}}
+{\footnotesize\ttfamily \label{class_model_1_1_repositorio_a09f2415a287723e2c8cb7ff8062e5b27} 
+bool Model.\+Repositorio.\+Hay\+Plazas\+Disponibles (\begin{DoxyParamCaption}\item[{int}]{aforo\+Maximo}{, }\item[{int}]{ocupados}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}}
+
+
+
+Comprueba si quedan plazas según el aforo y los ocupados. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em aforo\+Maximo} & Aforo máximo.\\
+\hline
+{\em ocupados} & Número de plazas ocupadas.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+{\ttfamily true} si hay plazas disponibles; en caso contrario, {\ttfamily false}.
+\end{DoxyReturn}
+\Hypertarget{class_model_1_1_repositorio_ad4ab6f05206fb3be7a340b11275cc38c}\index{Model.Repositorio@{Model.Repositorio}!PuedeGuardarReserva@{PuedeGuardarReserva}}
+\index{PuedeGuardarReserva@{PuedeGuardarReserva}!Model.Repositorio@{Model.Repositorio}}
+\doxysubsubsection{\texorpdfstring{PuedeGuardarReserva()}{PuedeGuardarReserva()}}
+{\footnotesize\ttfamily \label{class_model_1_1_repositorio_ad4ab6f05206fb3be7a340b11275cc38c} 
+bool Model.\+Repositorio.\+Puede\+Guardar\+Reserva (\begin{DoxyParamCaption}\item[{int}]{aforo\+Maximo}{, }\item[{int}]{ocupados}{, }\item[{System.\+Date\+Time}]{fecha}{, }\item[{bool}]{es\+Duplicado}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}}
+
+
+
+Dice si se puede guardar una reserva según aforo, duplicados y fecha. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em aforo\+Maximo} & Aforo máximo.\\
+\hline
+{\em ocupados} & Número de plazas ocupadas.\\
+\hline
+{\em fecha} & Fecha de la reserva.\\
+\hline
+{\em es\+Duplicado} & Indica si existe una reserva duplicada.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+{\ttfamily true} si se puede guardar; en caso contrario, {\ttfamily false}.
+\end{DoxyReturn}
+\Hypertarget{class_model_1_1_repositorio_a39c60f8a662c0cdbfecacdbc26ea7c3d}\index{Model.Repositorio@{Model.Repositorio}!SeleccionarActividades@{SeleccionarActividades}}
+\index{SeleccionarActividades@{SeleccionarActividades}!Model.Repositorio@{Model.Repositorio}}
+\doxysubsubsection{\texorpdfstring{SeleccionarActividades()}{SeleccionarActividades()}}
+{\footnotesize\ttfamily \label{class_model_1_1_repositorio_a39c60f8a662c0cdbfecacdbc26ea7c3d} 
+List$<$ \doxymbox{\hyperlink{class_model_1_1_actividad}{Actividad}} $>$ Model.\+Repositorio.\+Seleccionar\+Actividades (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Devuelve todas las actividades de la base de datos. 
+
+\begin{DoxyReturn}{Returns}
+Lista de actividades.
+\end{DoxyReturn}
+\Hypertarget{class_model_1_1_repositorio_a96385a4f00e73512e94291a60d255833}\index{Model.Repositorio@{Model.Repositorio}!SeleccionarReservas@{SeleccionarReservas}}
+\index{SeleccionarReservas@{SeleccionarReservas}!Model.Repositorio@{Model.Repositorio}}
+\doxysubsubsection{\texorpdfstring{SeleccionarReservas()}{SeleccionarReservas()}}
+{\footnotesize\ttfamily \label{class_model_1_1_repositorio_a96385a4f00e73512e94291a60d255833} 
+List$<$ \doxymbox{\hyperlink{class_model_1_1_reserva}{Reserva}} $>$ Model.\+Repositorio.\+Seleccionar\+Reservas (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Devuelve las reservas e incluye los datos de socio y actividad. 
+
+\begin{DoxyReturn}{Returns}
+Lista de reservas.
+\end{DoxyReturn}
+\Hypertarget{class_model_1_1_repositorio_a7acdaaf7c78bc721850a2838a02c99df}\index{Model.Repositorio@{Model.Repositorio}!SeleccionarSocios@{SeleccionarSocios}}
+\index{SeleccionarSocios@{SeleccionarSocios}!Model.Repositorio@{Model.Repositorio}}
+\doxysubsubsection{\texorpdfstring{SeleccionarSocios()}{SeleccionarSocios()}}
+{\footnotesize\ttfamily \label{class_model_1_1_repositorio_a7acdaaf7c78bc721850a2838a02c99df} 
+List$<$ \doxymbox{\hyperlink{class_model_1_1_socio}{Socio}} $>$ Model.\+Repositorio.\+Seleccionar\+Socios (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Devuelve todos los socios. 
+
+\begin{DoxyReturn}{Returns}
+Lista de socios.
+\end{DoxyReturn}
+
+
+The documentation for this class was generated from the following file:\+\begin{DoxyCompactItemize}
+\item 
+C:\+/\+\+Users/\+\+David Oviedo/\+\+Desktop/\+\+Actividad-\/2-\/\+MVVM\+\_\+\+David-\/\+Oviedo/\+\+Model/\+Repositorios.\+cs\end{DoxyCompactItemize}

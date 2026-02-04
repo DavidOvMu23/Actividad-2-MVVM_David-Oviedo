@@ -1,0 +1,113 @@
+\doxysection{Model\+View.\+Command.\+Relay\+Command Class Reference}
+\hypertarget{class_model_view_1_1_command_1_1_relay_command}{}\label{class_model_view_1_1_command_1_1_relay_command}\index{ModelView.Command.RelayCommand@{ModelView.Command.RelayCommand}}
+
+
+Comando reutilizable para enganchar acciones del View\+Model a la vista.  
+
+
+Inheritance diagram for Model\+View.\+Command.\+Relay\+Command:\+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{class_model_view_1_1_command_1_1_relay_command}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\doxymbox{\hyperlink{class_model_view_1_1_command_1_1_relay_command_a2464d5a1deec0710c150ebf84de1934c}{Relay\+Command}} (Action$<$ object $>$ execute)
+\begin{DoxyCompactList}\small\item\em Constructor cuando siempre se puede ejecutar. \end{DoxyCompactList}\item 
+\doxymbox{\hyperlink{class_model_view_1_1_command_1_1_relay_command_ad3545a1bf83062230669e938d41147ef}{Relay\+Command}} (Action$<$ object $>$ execute, Predicate$<$ object $>$ can\+Execute)
+\begin{DoxyCompactList}\small\item\em Constructor principal con la acción y la condición opcional. \end{DoxyCompactList}\item 
+bool \doxymbox{\hyperlink{class_model_view_1_1_command_1_1_relay_command_a97dae74b70b90238f2bc5f2e4ceb83f5}{Can\+Execute}} (object parameter)
+\begin{DoxyCompactList}\small\item\em Devuelve si el comando puede ejecutarse. \end{DoxyCompactList}\item 
+void \doxymbox{\hyperlink{class_model_view_1_1_command_1_1_relay_command_acdc40d80369c41a3bfa3e7b048fade56}{Execute}} (object parameter)
+\begin{DoxyCompactList}\small\item\em Ejecuta la acción del comando. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Events}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{class_model_view_1_1_command_1_1_relay_command_ac511c31902b58d01cdac0cdf4c4d487b}\label{class_model_view_1_1_command_1_1_relay_command_ac511c31902b58d01cdac0cdf4c4d487b} 
+Event\+Handler {\bfseries Can\+Execute\+Changed}\hspace{0.3cm}{\ttfamily  \+[add, remove]\+}
+\begin{DoxyCompactList}\small\item\em Evento para que WPF reevalúe si el comando puede ejecutarse. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Comando reutilizable para enganchar acciones del View\+Model a la vista. 
+
+\label{doc-constructors}
+\Hypertarget{class_model_view_1_1_command_1_1_relay_command_doc-constructors}
+\doxysubsection{Constructor \& Destructor Documentation}
+\Hypertarget{class_model_view_1_1_command_1_1_relay_command_a2464d5a1deec0710c150ebf84de1934c}\index{ModelView.Command.RelayCommand@{ModelView.Command.RelayCommand}!RelayCommand@{RelayCommand}}
+\index{RelayCommand@{RelayCommand}!ModelView.Command.RelayCommand@{ModelView.Command.RelayCommand}}
+\doxysubsubsection{\texorpdfstring{RelayCommand()}{RelayCommand()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily \label{class_model_view_1_1_command_1_1_relay_command_a2464d5a1deec0710c150ebf84de1934c} 
+Model\+View.\+Command.\+Relay\+Command.\+Relay\+Command (\begin{DoxyParamCaption}\item[{Action$<$ object $>$}]{execute}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Constructor cuando siempre se puede ejecutar. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em execute} & Acción a ejecutar.\\
+\hline
+\end{DoxyParams}
+\Hypertarget{class_model_view_1_1_command_1_1_relay_command_ad3545a1bf83062230669e938d41147ef}\index{ModelView.Command.RelayCommand@{ModelView.Command.RelayCommand}!RelayCommand@{RelayCommand}}
+\index{RelayCommand@{RelayCommand}!ModelView.Command.RelayCommand@{ModelView.Command.RelayCommand}}
+\doxysubsubsection{\texorpdfstring{RelayCommand()}{RelayCommand()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily \label{class_model_view_1_1_command_1_1_relay_command_ad3545a1bf83062230669e938d41147ef} 
+Model\+View.\+Command.\+Relay\+Command.\+Relay\+Command (\begin{DoxyParamCaption}\item[{Action$<$ object $>$}]{execute}{, }\item[{Predicate$<$ object $>$}]{can\+Execute}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Constructor principal con la acción y la condición opcional. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em execute} & Acción a ejecutar.\\
+\hline
+{\em can\+Execute} & Condición opcional para habilitar/\+deshabilitar.\\
+\hline
+\end{DoxyParams}
+
+
+\label{doc-func-members}
+\Hypertarget{class_model_view_1_1_command_1_1_relay_command_doc-func-members}
+\doxysubsection{Member Function Documentation}
+\Hypertarget{class_model_view_1_1_command_1_1_relay_command_a97dae74b70b90238f2bc5f2e4ceb83f5}\index{ModelView.Command.RelayCommand@{ModelView.Command.RelayCommand}!CanExecute@{CanExecute}}
+\index{CanExecute@{CanExecute}!ModelView.Command.RelayCommand@{ModelView.Command.RelayCommand}}
+\doxysubsubsection{\texorpdfstring{CanExecute()}{CanExecute()}}
+{\footnotesize\ttfamily \label{class_model_view_1_1_command_1_1_relay_command_a97dae74b70b90238f2bc5f2e4ceb83f5} 
+bool Model\+View.\+Command.\+Relay\+Command.\+Can\+Execute (\begin{DoxyParamCaption}\item[{object}]{parameter}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Devuelve si el comando puede ejecutarse. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em parameter} & Parámetro del comando.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+{\ttfamily true} si se puede ejecutar; en caso contrario, {\ttfamily false}.
+\end{DoxyReturn}
+\Hypertarget{class_model_view_1_1_command_1_1_relay_command_acdc40d80369c41a3bfa3e7b048fade56}\index{ModelView.Command.RelayCommand@{ModelView.Command.RelayCommand}!Execute@{Execute}}
+\index{Execute@{Execute}!ModelView.Command.RelayCommand@{ModelView.Command.RelayCommand}}
+\doxysubsubsection{\texorpdfstring{Execute()}{Execute()}}
+{\footnotesize\ttfamily \label{class_model_view_1_1_command_1_1_relay_command_acdc40d80369c41a3bfa3e7b048fade56} 
+void Model\+View.\+Command.\+Relay\+Command.\+Execute (\begin{DoxyParamCaption}\item[{object}]{parameter}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Ejecuta la acción del comando. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em parameter} & Parámetro del comando.\\
+\hline
+\end{DoxyParams}
+
+
+The documentation for this class was generated from the following file:\+\begin{DoxyCompactItemize}
+\item 
+C:\+/\+\+Users/\+\+David Oviedo/\+\+Desktop/\+\+Actividad-\/2-\/\+MVVM\+\_\+\+David-\/\+Oviedo/\+\+Model\+View/\+\+Command/\+Relay\+Command.\+cs\end{DoxyCompactItemize}
