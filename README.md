@@ -5,7 +5,7 @@ Aplicación de escritorio para la gestión de un centro deportivo. Implementa el p
 
 ## Tecnologías usadas
 - C#
-- .NET Framewor
+- .NET Framework
 - WPF
 - Patrón MVVM
 
@@ -20,7 +20,7 @@ Aplicación de escritorio para la gestión de un centro deportivo. Implementa el p
 3. Ejecuta la aplicación desde Visual Studio.
 
 ## Manual de usuario
-[Descargar manual de usuario](docs/pdf/Manual%de%usuario_Centro%Deportivo.pdf)
+[Descargar manual de usuario](docs/pdf/manual%20de%20usuarios.pdf)
 
 ## Capturas
 ### Pantalla principal
