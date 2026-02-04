@@ -20,7 +20,7 @@ Aplicación de escritorio para la gestión de un centro deportivo. Implementa el p
 3. Ejecuta la aplicación desde Visual Studio.
 
 ## Manual de usuario
-[Descargar manual de usuario](docs/pdf/Manual de usuario_Centro Deportivo.pdf)
+[Descargar manual de usuario](docs/pdf/Manual%de%usuario_Centro%Deportivo.pdf)
 
 ## Capturas
 ### Pantalla principal
