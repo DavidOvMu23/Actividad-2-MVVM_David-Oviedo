@@ -1,23 +1,23 @@
 # CentroDeportivo
 
-## Descripci髇 del proyecto
-Aplicaci髇 de escritorio para la gesti髇 de un centro deportivo. Implementa el patr髇 MVVM con separaci髇 en proyectos `Model`, `ModelView` y `View`.
+## Descripci贸n del proyecto
+Aplicaci贸n de escritorio para la gesti贸n de un centro deportivo. Implementa el patr贸n MVVM con separaci贸n en proyectos `Model`, `ModelView` y `View`.
 
-## Tecnolog韆s usadas
+## Tecnolog铆as usadas
 - C#
 - .NET Framework
 - WPF
-- Patr髇 MVVM
+- Patr贸n MVVM
 
-## Instalaci髇
+## Instalaci贸n
 1. Clona este repositorio.
-2. Abre la soluci髇 en Visual Studio.
+2. Abre la soluci贸n en Visual Studio.
 3. Restaura dependencias si aplica.
 
-## C髆o ejecutar
+## C贸mo ejecutar
 1. Establece el proyecto `View` como proyecto de inicio.
-2. Compila la soluci髇.
-3. Ejecuta la aplicaci髇 desde Visual Studio.
+2. Compila la soluci贸n.
+3. Ejecuta la aplicaci贸n desde Visual Studio.
 
 ## Manual de usuario
 [Descargar manual de usuario](docs/pdf/Manual%de%usuario_Centro%Deportivo.pdf)
@@ -26,11 +26,11 @@ Aplicaci髇 de escritorio para la gesti髇 de un centro deportivo. Implementa el p
 ### Pantalla principal
 <img src="docs/capturas/pantalla-principal.PNG" width="370" alt="Pantalla principal">
 
-### Gesti髇 de actividades
-<img src="docs/capturas/actividades.PNG" width="370" alt="Gesti髇 de actividades">
+### Gesti贸n de actividades
+<img src="docs/capturas/actividades.PNG" width="370" alt="Gesti贸n de actividades">
 
-### Gesti髇 de socios
-<img src="docs/capturas/socios.PNG" width="370" alt="Gesti髇 de socios">
+### Gesti贸n de socios
+<img src="docs/capturas/socios.PNG" width="370" alt="Gesti贸n de socios">
 
 ## Autores
 - David Oviedo
